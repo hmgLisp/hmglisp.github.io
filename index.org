@@ -1,0 +1,22 @@
+* tekla api
+** brace conenction
+가장 일반적인 수평 브레이스 접합 컴포넌트를 만들어보자.
++ primary part
+  - attributes
+    - profile
+      - depth
+      - height
+      - profile string
+  - coordinate system
++ secondary part
+  - attributes
+    - profile
+      - depth
+      - height
+      - profile string
+  - coordinate system
++ create work plane
+  - origin
+    - primary part secondary part insert point
+  - direction
+    - 

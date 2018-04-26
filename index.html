@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-04-21 토 15:53 -->
+<!-- 2018-04-26 목 23:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TeklaStructures</title>
+<title>&lrm;</title>
 <meta name="generator" content="Org mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
@@ -228,57 +228,73 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">TeklaStructures</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1053905">1. Tekla Structures</a>
+<li><a href="#orgb31064b">1. tekla api</a>
 <ul>
-<li><a href="#org806d16e">1.1. Tip</a>
-<ul>
-<li><a href="#orged015b5">1.1.1. 앙카도면 그리기</a></li>
-</ul>
-</li>
+<li><a href="#orgc6218cf">1.1. brace conenction</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org1053905" class="outline-2">
-<h2 id="org1053905"><span class="section-number-2">1</span> Tekla Structures</h2>
+<div id="outline-container-orgb31064b" class="outline-2">
+<h2 id="orgb31064b"><span class="section-number-2">1</span> tekla api</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org806d16e" class="outline-3">
-<h3 id="org806d16e"><span class="section-number-3">1.1</span> Tip</h3>
+<div id="outline-container-orgc6218cf" class="outline-3">
+<h3 id="orgc6218cf"><span class="section-number-3">1.1</span> brace conenction</h3>
 <div class="outline-text-3" id="text-1-1">
-</div>
-<div id="outline-container-orged015b5" class="outline-4">
-<h4 id="orged015b5"><span class="section-number-4">1.1.1</span> 앙카도면 그리기</h4>
-<div class="outline-text-4" id="text-1-1-1">
 <p>
-앙카도면을 테크라에서 그린다.
+가장 일반적인 수평 브레이스 접합 컴포넌트를 만들어보자.
 </p>
 <ul class="org-ul">
-<li>장점
+<li>primary part
 <ul class="org-ul">
-<li>물량산출</li>
-<li>비주얼하게 보면서 정보를 얻으면서 작업 할 수있다.</li>
+<li>attributes
+<ul class="org-ul">
+<li>profile
+<ul class="org-ul">
+<li>depth</li>
+<li>height</li>
+<li>profile string</li>
+</ul></li>
+</ul></li>
+<li>coordinate system</li>
+</ul></li>
+<li>secondary part
+<ul class="org-ul">
+<li>attributes
+<ul class="org-ul">
+<li>profile
+<ul class="org-ul">
+<li>depth</li>
+<li>height</li>
+<li>profile string</li>
+</ul></li>
+</ul></li>
+<li>coordinate system</li>
+</ul></li>
+<li>create work plane
+<ul class="org-ul">
+<li>origin
+<ul class="org-ul">
+<li>primary part secondary part insert point</li>
+</ul></li>
+<li>direction
+<ul class="org-ul">
 <li></li>
 </ul></li>
-<li>단점
-<ul class="org-ul">
-<li>100개의 앙카가 있다면 100개를 모두 모델로 그려야 한다.</li>
-<li>변경이 있을시에 수정시간이 2차원에 비해서 오래 걸린다.</li>
 </ul></li>
 </ul>
-</div>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2018-04-21 토 15:53</p>
+<p class="date">Created: 2018-04-26 목 23:54</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
