@@ -4,16 +4,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>tmp</title>
-<<<<<<< HEAD
-<!-- 2018-05-20 일 20:49 -->
+<!-- 2018-05-21 월 22:53 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="hmg" />
-=======
-<!-- 2018-05-21 월 12:45 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="generator" content="Org-mode" />
->>>>>>> 3980a671d654c37411fb8c2ce4e7a52382630674
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center; }
@@ -148,51 +142,20 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<<<<<<< HEAD
-<li><a href="#sec-1">1. 릭엔 모티</a>
-<ul>
-<li><a href="#sec-1-1">1.1. 에피소드</a></li>
-=======
 <li><a href="#sec-1">1. 영어공부</a>
 <ul>
 <li><a href="#sec-1-1">1.1. 영어 공부계획</a>
 <ul>
-<li><a href="#sec-1-1-1">1.1.1. 글쓰기</a></li>
-<li><a href="#sec-1-1-2">1.1.2. 만화그리기</a></li>
-<li><a href="#sec-1-1-3">1.1.3. 게임 만들기</a></li>
-<li><a href="#sec-1-1-4">1.1.4. 영어</a></li>
+<li><a href="#sec-1-1-1">1.1.1. 계획하기</a></li>
+<li><a href="#sec-1-1-2">1.1.2. 기술에 현혹되지 말자</a></li>
 </ul>
 </li>
->>>>>>> 3980a671d654c37411fb8c2ce4e7a52382630674
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <div id="outline-container-sec-1" class="outline-2">
-<<<<<<< HEAD
-<h2 id="sec-1"><span class="section-number-2">1</span> 릭엔 모티</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-전우주 최고의 두뇌를 가진 할아버지 릭과 그의 손자 모디의 모험
-</p>
-</div>
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 에피소드</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-가족상담에 가기 싫은 릭은 피클로 변신해버린다.
-릭의 계획은 피클로 변신해서 못가는 핑개를 대고 상담에 빠진후에 타이머를 맞추어 놓은 회복약을 사용해서 원래의 릭으로 돌아오는것이었다.
-하지만 가족은 눈에 보이게 상담을 빠지려는 릭의 계획을 눈치 채고 실망감에 릭의 회복약을 가지고 가버린다.
-</p>
-</div>
-</div>
-</div>
-</div>
-<div id="postamble" class="status">
-<p class="author">Author: hmg</p>
-<p class="date">Created: 2018-05-20 일 20:49</p>
-=======
 <h2 id="sec-1"><span class="section-number-2">1</span> 영어공부</h2>
 <div class="outline-text-2" id="text-1">
 <p>
@@ -230,37 +193,68 @@ for the JavaScript code in this tag.
 </p>
 </div>
 <div id="outline-container-sec-1-1-1" class="outline-4">
-<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> 글쓰기</h4>
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> 계획하기</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
+남은 시간동안 더 나은 삶을위해서 해야할 일을 적어본다.
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-1-1-1-1" name="sec-1-1-1-1"></a>글쓰기<br  /><div class="outline-text-5" id="text-1-1-1-1">
+<p>
 감상이든 리뷰든 아무말이든 글로써 생각을 정리하고 될수있다면 타인에서 전달할수 있도록 해본다.    
+가장 쉬운면서 가장 어련운 일이라고 생각이된다.
+나의 생각을 가지고 정리해서 이제는 밖으로 분출을 할수 있도록 한다.
 </p>
+<ul class="org-ul">
+<li>리뷰
+</li>
+<li>감상문
+</li>
+</ul>
 </div>
-</div>
-<div id="outline-container-sec-1-1-2" class="outline-4">
-<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> 만화그리기</h4>
-<div class="outline-text-4" id="text-1-1-2">
+</li>
+<li><a id="sec-1-1-1-2" name="sec-1-1-1-2"></a>만화그리기<br  /><div class="outline-text-5" id="text-1-1-1-2">
 <p>
-좋아한다.
-언젠가부터 힘이 들어가기때문에 횐종이가 두려워져서 그리고 다른 사람의 그림과 비교가 되어서 멀리 했지만 다시
-결국엔 내 그림을 그리고 싶다.
+이야기와 연출이 담겨있는 그림을 그리고 완성을 할수있도록 한다.
 </p>
+<ul class="org-ul">
+<li>4컷
+</li>
+<li>1컷
+</li>
+<li>서사       
+</li>
+</ul>
 </div>
-</div>
-<div id="outline-container-sec-1-1-3" class="outline-4">
-<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> 게임 만들기</h4>
-<div class="outline-text-4" id="text-1-1-3">
+</li>
+<li><a id="sec-1-1-1-3" name="sec-1-1-1-3"></a>게임 만들기<br  /><div class="outline-text-5" id="text-1-1-1-3">
 <p>
-프로그래밍또한 내가 할 수 있는일 나의 무기이고
-글쓰기 만화그리기를 병합한 최종 결과물은 게임의 형태일 것이다.
+글과 만화의 최종 아웃풋은 게임이어야 한다.
 </p>
+<ul class="org-ul">
+<li>cpp
+</li>
+<li>c#
+</li>
+<li>lisp
+</li>
+</ul>
 </div>
-</div>
-<div id="outline-container-sec-1-1-4" class="outline-4">
-<h4 id="sec-1-1-4"><span class="section-number-4">1.1.4</span> 영어</h4>
-<div class="outline-text-4" id="text-1-1-4">
+</li>
+<li><a id="sec-1-1-1-4" name="sec-1-1-1-4"></a>영어<br  /><div class="outline-text-5" id="text-1-1-1-4">
 <p>
 글쓰기를 하건 만화를 그리건 게임을 만들건 더 넓은 세계로 나가기위한 최고의 도구, 기술, 지침서라고 생각한다.
+</p>
+</div>
+</li></ol>
+</div>
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> 기술에 현혹되지 말자</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+    그동한 공부할때 시행착오를 격은것중 하나인데 기술에 너무 현혹 되는 경우가 많았다.
+    세로운 기술
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 3980a671d654c37411fb8c2ce4e7a52382630674
 </p>
 </div>
 </div>
@@ -268,8 +262,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2018-05-21 월 12:45</p>
->>>>>>> 3980a671d654c37411fb8c2ce4e7a52382630674
+<p class="author">Author: hmg</p>
+<p class="date">Created: 2018-05-21 월 22:53</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
