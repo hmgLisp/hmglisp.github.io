@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>hmg works</title>
+        <style>
+            * {      padding: 0;                margin: 0;                }
+            canvas {background: #eee; display: block; margin: 0 auto;}
+        </style>
     </head>
     <body>
         <h1> <a href="index.html">TODO...</a></h1>                
@@ -20,8 +24,18 @@
             <li><a href="Manhwa/index.html">Manhwa</a></li>
             <li><a href="main-TeklaStructures.html">TeklaStructures</a></li>
         </ul>        
-        <p>
-	  <a href="https://www.google.com">google</a>
-        </p>
+      <canvas id="game" width="480" height="320"></canvas>
+      <script>
+          var canvas = document.getElementById("game");
+          var ctx = canvas.getContext("2d");
+
+          ctx.beginPath();
+          ctx.rect(20, 40, 50, 50);
+          ctx.fillStyle = "#ff0000";
+          ctx.fill();
+          ctx.closePath();
+
+          ctx.begin
+      </script>
     </body>
 </html>
