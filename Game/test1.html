@@ -16,19 +16,38 @@
     var ctx = canvas.getContext("2d");
     var x = canvas.width / 2;
     var y = canvas.height  / 2;
+    var dx = 2;
+    var spacebarPressed = false;
 
     canvas.addEventListener("keydown", keyDownHandler, false);
     canvas.addEventListener("keyup", keyUpHandler, false);
 
-    function keyDownHandler() {
-        
+    function keyDownHandler (e) {
+        if (e.keyCode == 32) {
+            spacebarPressed = true;
+        }
     }
 
-    ctx.beginPath();
-    ctx.arc(x, y, 10, 0, Math.PI * 2, false);
-    ctx.fillStyle = "red";
-    ctx.fill();
-    ctx.closePath();
+    function keyUpHandler (e) {
+        if (e.keyCode == 32) {
+            spacebarPressed = false;
+        }
+    }
+
+    function draw () {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        ctx.arc(x, y, 10, 0, Math.PI * 2, false);
+        ctx.fillStyle = "red";
+        ctx.fill();
+        ctx.closePath();
+        if (spacebarPressed == true) {
+            dx = -dx;
+        }
+        x += dx;
+    }    
+
+    setInterval(draw, 10);
     </script>
 </body>
 </html>
