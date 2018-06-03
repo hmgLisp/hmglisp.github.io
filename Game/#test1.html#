@@ -19,7 +19,6 @@
      var y = canvas.height - (canvas.height / 4);
      var w = 80;
      var h = 100;
-
      var moveSpeed = 2;
           
      canvas.addEventListener("keydown", keyDownHandler, false);
@@ -38,7 +37,7 @@
      }
 
      function drawTank () {
-	 ctx.
+	 ctx.rect(x, y, 
      }
 	 
      function draw () {
