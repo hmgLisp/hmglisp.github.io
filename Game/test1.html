@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        canvas{background:lightblue;}
+        canvas{background:black}
     </style>
 </head>
 <body>
@@ -49,10 +49,17 @@
             ctx.beginPath();
             {
                 ctx.rect(x, y, w, h);
-                ctx.fillStyle = "red";
-                ctx.fill();
+                ctx.fillStyle = "yellow";
+                ctx.fill();   
+
+                //
+                ctx.moveTo(x + w /2, y);
+                ctx.lineTo(x + w / 2, y - 15);
+                ctx.strokeStyle = "yellow";
+                ctx.stroke();             
             }
             ctx.closePath();	 
+            
         }
         
         function draw () {
@@ -64,9 +71,7 @@
             }
             else if (pressedDown == true) {
                 y += moveSpeed;
-            }
-
-            console.log(pressedUp);
+            }            
         }
 
                 
