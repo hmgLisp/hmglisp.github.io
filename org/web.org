@@ -1,4 +1,5 @@
 * CSS
+
 ** 선택자에 대한이야기
 *** 순서
 **** id
@@ -7,3 +8,26 @@
      추상화
 **** tag
      종
+
+** box model
+   
+*** block level element
+    전채를 사용하는   
+**** display: block 
+     width값을 주면 inline처럼 보이게 된다.
+*** inline level element
+    가지는 컨텐트만큼 사용하는
+**** display: inline
+*** padding
+*** margin
+*** border
+
+** div, span
+디자인만을 위한 tag
+*** div
+**** block
+*** span
+**** inline
+** grid
+display: grid
+*** grid-template-columns

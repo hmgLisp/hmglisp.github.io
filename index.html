@@ -6,17 +6,50 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>hmg works</title>
     </head>
+    <style>
+        body {
+            margin: 0px;
+        }
+
+        h1 {
+            font-size:45px;
+            border-bottom: 1px solid gray;
+            margin: 0;
+            padding: 20px;
+            }
+        ul {
+            border-right: 1px solid gray;            
+            padding: 20px;
+            margin: 0px;
+        }
+        #grid {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+        }
+        ul {
+            padding-left: 33px;
+        }
+        #article {
+            padding: 25px;
+        }
+    </style>
     <body>
         <h1> <a href="index.html">TODO...</a></h1>                
-        <ul>
-            <li><a href="main-CommonLisp.html">CommonLisp</a></li>
-            <li><a href="main-OhMyGirl.html">OhMyGril</a></li>
-            <li><a href="Game/index.html">GameDev</a></li>
-            <li><a href="Manhwa/index.html">Manhwa</a></li>
-            <li><a href="main-TeklaStructures.html">TeklaStructures</a></li>
-        </ul>        
-        <p>
-	  	  
-        </p>
+        <div id="grid">
+            <ul>
+                <li><a href="main-CommonLisp.html">CommonLisp</a></li>
+                <li><a href="main-OhMyGirl.html">OhMyGril</a></li>
+                <li><a href="Game/index.html">GameDev</a></li>
+                <li><a href="Manhwa/index.html">Manhwa</a></li>
+                <li><a href="main-TeklaStructures.html">TeklaStructures</a></li>
+            </ul>   
+        
+            <div id="article">
+                <h2>temp</h2>
+                <p>
+                    때때로 배우고 익히니 즐겁지 아니한가
+                </p>
+            </div>     
+        </div>
     </body>
 </html>
