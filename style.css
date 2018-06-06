@@ -1,0 +1,32 @@
+* {
+    margin: 0px;  
+    padding: 0px;  
+}
+
+h1 {
+    font-size: 50px;
+    padding: 15px;  
+    padding-top: 20px;
+    border-bottom: 1px solid gray;  
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;      
+}
+
+#nav {
+    padding: 20px;
+    list-style: none;    
+}
+
+#article {
+    padding: 20px;
+    border-left: 1px solid gray;    
+}
+
+@media (max-width:800px) {
+    #grid {
+        display: block;        
+    }
+}
