@@ -1,0 +1,17 @@
+#omg_logo {    
+    border: 1px solid gray;
+    padding: 50px;
+    text-align: center; 
+    width: 30%;       
+}
+
+#omg_logo img {
+    width: 100%;
+} 
+
+#member {
+    padding: 33px;
+}
+#member li {   
+    display: inline;    
+}
