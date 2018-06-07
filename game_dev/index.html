@@ -6,10 +6,53 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>hmg works</title>
         <link rel="shortcut icon" href="../img/hmg.ico">
-        <link rel="stylesheet" href="../style.css">        
+        <link rel="stylesheet" href="../style.css">
+        <style>
+
+            #tiles {
+                /* border: 1px solid gray; */
+            }
+
+            .tile, .empty-tile {
+                box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+                display: inline-block;
+                height: var(--tile-height);
+                background: rgb(244, 244, 244);
+                margin: 5px;
+                width: var(--tile-width);
+                text-decoration: none;
+                
+            }
+
+            .thumb {
+                display: block;
+                width: 100%;
+                /* height: calc(var(--tile-height)-var(--title-height)); */
+                overflow: hidden;
+            }
+
+            .thumb img {
+                width: 100%;
+            }
+
+            .title {
+                height: var(--title-height);                
+                }
+
+            .title h2 {
+                
+
+            }
+
+            html {
+                --tile-width: 300px;
+                --tile-height:200px;
+                --title-height:45px;
+            }
+        </style>
     </head>
     <body>
-        <h1> <a href="../index.html">TODO...</a></h1>                
+        <h1> <a href="../index.html">TODO...</a></h1>
         <div id="grid">
             <ul id="nav">
                 <h2>list</h2>
@@ -19,12 +62,36 @@
                 <li><a href="../manhwa/index.html">manhwa</a></li>
                 <li><a href="../omg/index.html">omg</a></li>
                 <li><a href="../tekla/index.html">tekla</a></li>
-                <li><a href="../tmp/index.html">tmp</a></li>                             
+                <li><a href="../tmp/index.html">tmp</a></li>
             </ul>
             <div id="article">
-                <h2>1806_Game 01</h2>                    
-                <a href="./1806_game_01/index.html">벽돌깨기</a>
-            </div>                  
+                <div id="tiles">
+                    <a class="tile" href="">
+                        <div class="title">
+                            <h2>벽돌깨기</h2>
+                        </div>
+                        <div class="thumb">
+                            <img src="../omg/img/1806_omg_01.jpg" alt="">
+                        </div>
+                    </a>
+                    <a class="tile" href="">
+                            <div class="title">
+                                <h2>벽돌깨기</h2>
+                            </div>
+                            <div class="thumb">
+                                <img src="../omg/img/1806_omg_01.jpg" alt="">
+                            </div>
+                        </a>
+                    <a class="empty-tile"></a>
+                    <a class="empty-tile"></a>
+                    <a class="empty-tile"></a>
+                    <a class="empty-tile"></a>
+                </div>
+                <!-- <h2>1806_Game 01</h2>
+                <a href="./1806_game_01/index.html">벽돌깨기</a><br>
+                <h2>1086_Game 02</h2>
+                <a href="./1806_game_02/index.html">탱크</a> -->
+            </div>
         </div>
     </body>
 </html>
