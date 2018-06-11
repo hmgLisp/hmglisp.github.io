@@ -150,7 +150,8 @@ function gameMain() {
         ctx.beginPath();
         ctx.moveTo(barrelX, barrelY);
         ctx.lineTo(muzzleX, muzzleY);
-        ctx.strokeStyle = "green";
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = "red";
         ctx.stroke();
         ctx.closePath();
     }
