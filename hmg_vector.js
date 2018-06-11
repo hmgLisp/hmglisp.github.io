@@ -12,3 +12,7 @@ class cVector {
         return new cVector(a.x - b.x, a.y - b.y);
     }
 }
+
+function degreeToRadian (d) {
+    return d * Math.PI / 180;
+}

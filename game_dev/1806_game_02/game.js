@@ -14,13 +14,15 @@ function gameMain() {
     var dx = 0;
     var dy = 0;
    
-    var barrelX = 0;
-    var barrelY = 0;
+    var barrelX = x + w / 2;
+    var barrelY = y + h / 2;
     var barrelLen = -30;
     var barrelT = 5;
+    
 
-    var muzzleX = 0;
-    var muzzleY = 0;
+
+    var muzzleX = barrelX;
+    var muzzleY = barrelY + barrelLen;
     
     var pressedUp = false;
     var pressedDown = false;
@@ -41,11 +43,12 @@ function gameMain() {
     // var drection = eDirection.UP;
 
     class cBullet {
-        constructor(x, y) {
+        constructor(x, y, dir) {
             this.x = x;
             this.y = y;
-            this.r = 5;  
+            this.r = 5;              
             this.speed = 5;          
+            this.dir = dir;
         }
 
         update() {
@@ -53,7 +56,22 @@ function gameMain() {
             if (dy - this.r < 0) {
                 delete this;
             }
-            this.y += -this.speed;         
+            if (this.dir[0] == 0) {
+                if (this.dir[1] > 0) {
+                    this.y += this.speed;         
+                }
+                else {
+                    this.y += -this.speed;         
+                }
+            }
+            else {
+                if (this.dir[0] > 0) {
+                    this.x += this.speed;
+                }
+                else {
+                    this.x += -this.speed;
+                }
+            }            
         }            
 
         render(ctx) {
@@ -78,20 +96,16 @@ function gameMain() {
         // 40: arrow down
 
         if (e.keyCode == 38) {
-            pressedUp = true;
-            ang = 90;
+            pressedUp = true;            
         }
         else if (e.keyCode == 40) {
-            pressedDown = true;
-            ang = 270;
+            pressedDown = true;            
         }
         else if (e.keyCode == 37) {
-            pressedLeft = true;
-            ang = 180;
+            pressedLeft = true;            
         }
         else if (e.keyCode == 39) {
-            pressedRight = true;
-            ang = 0;
+            pressedRight = true;            
         }
 
         if (e.keyCode == 32) {
@@ -126,13 +140,21 @@ function gameMain() {
         ctx.closePath();
         
         //draw barrel
-        ctx.beginPath();        
-        ctx.rect(barrelX - barrelT / 2, barrelY, barrelT, barrelLen);
-        ctx.fillStyle = "red";
-        ctx.fill();     
-        ctx.closePath();        
+        // ctx.beginPath();        
+        // ctx.rect(barrelX - barrelT / 2, barrelY, barrelT, barrelLen);
+        // ctx.fillStyle = "red";
+        // ctx.fill();     
+        // ctx.closePath(); 
+        
+        //draww barrel
+        ctx.beginPath();
+        ctx.moveTo(barrelX, barrelY);
+        ctx.lineTo(muzzleX, muzzleY);
+        ctx.strokeStyle = "green";
+        ctx.stroke();
+        ctx.closePath();
     }
-
+    
     function update() {
         
     }
@@ -146,18 +168,15 @@ function gameMain() {
         });
 
         if (pressedUp == true) {
-            dy = -speed;
-        }        
-
-        if (pressedDown == true) {
+            dy = -speed;            
+        }   
+        else if (pressedDown == true) {
             dy = speed;
         }
-
-        if (pressedLeft == true) {
+        else if (pressedLeft == true) {
             dx = -speed;
         }
-
-        if (pressedRight == true) {
+        else if (pressedRight == true) {
             dx = speed;
         }
 
@@ -170,14 +189,29 @@ function gameMain() {
         }
 
         if (pressedSpace == true) {
-            bulletManager.push(new cBullet(muzzleX, muzzleY));
+            bulletManager.push(new cBullet(muzzleX, muzzleY, [muzzleX - barrelX, muzzleY - barrelY]));
             pressedSpace = false;
         }
 
         barrelX = (x + w / 2);
         barrelY = y + h / 2;  
-        muzzleX = barrelX;
-        muzzleY = barrelY + barrelLen;
+
+        if (pressedUp == true) {
+            muzzleX = barrelX;
+            muzzleY = barrelY + barrelLen;
+        }
+        else if (pressedDown == true) {
+            muzzleX = barrelX;
+            muzzleY = barrelY + -barrelLen;
+        }
+        else if (pressedLeft == true) {
+            muzzleX = barrelX + barrelLen;
+            muzzleY = barrelY;
+        }
+        else if (pressedRight == true) {
+            muzzleX = barrelX + -barrelLen;
+            muzzleY = barrelY;
+        }        
 
         dx = 0;
         dy = 0;
