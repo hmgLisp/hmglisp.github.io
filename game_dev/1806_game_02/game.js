@@ -31,6 +31,15 @@ function gameMain() {
 
     var bulletManager = [];
 
+    // const eDirection = {
+    //     UP: 0,
+    //     DOWN: 1,
+    //     LEFT: 2,
+    //     RIGHT: 3,
+    // };
+
+    // var drection = eDirection.UP;
+
     class cBullet {
         constructor(x, y) {
             this.x = x;
