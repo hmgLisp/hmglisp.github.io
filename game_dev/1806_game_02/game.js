@@ -8,8 +8,7 @@ function gameMain() {
     var y = canvas.clientHeight / 2;
     var w = 30;
     var h = 30;
-    var speed = 2;
-    var ang = 90;
+    var speed = 2;    
 
     var dx = 0;
     var dy = 0;
@@ -17,10 +16,8 @@ function gameMain() {
     var barrelX = x + w / 2;
     var barrelY = y + h / 2;
     var barrelLen = -30;
-    var barrelT = 5;
+    var barrelTHK = 5;
     
-
-
     var muzzleX = barrelX;
     var muzzleY = barrelY + barrelLen;
     
@@ -32,15 +29,9 @@ function gameMain() {
     var pressedSpace = false;
 
     var bulletManager = [];
+    var bricks = [];
 
-    // const eDirection = {
-    //     UP: 0,
-    //     DOWN: 1,
-    //     LEFT: 2,
-    //     RIGHT: 3,
-    // };
-
-    // var drection = eDirection.UP;
+    var grid = [];
 
     class cBullet {
         constructor(x, y, dir) {
@@ -58,7 +49,7 @@ function gameMain() {
             }
             if (this.dir[0] == 0) {
                 if (this.dir[1] > 0) {
-                    this.y += this.speed;         
+                    this.y += this.speed;                          
                 }
                 else {
                     this.y += -this.speed;         
@@ -150,7 +141,7 @@ function gameMain() {
         ctx.beginPath();
         ctx.moveTo(barrelX, barrelY);
         ctx.lineTo(muzzleX, muzzleY);
-        ctx.lineWidth = 5;
+        ctx.lineWidth = barrelTHK;
         ctx.strokeStyle = "red";
         ctx.stroke();
         ctx.closePath();
