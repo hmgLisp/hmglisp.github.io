@@ -29,9 +29,23 @@ function gameMain() {
     var pressedSpace = false;
 
     var bulletManager = [];
-    var bricks = [];
+    
+    
+    //gridMap map
+    var rowCount = 20;
+    var columnCount = 20;
+    var cellWidth = 30;
+    var cellHeight = 30;
 
-    var grid = [];
+    var gridMap = [];
+    var bricks = [];
+    
+    for (var c = 0; c < columnCount; c++) {
+        gridMap[c] = [];
+        for (var r = 0; r < rowCount; r++) {
+            gridMap[c][r] = {x: (c * cellWidth), y: (r * cellHeight), state: 0};            
+        }
+    }
 
     class cBullet {
         constructor(x, y, dir) {
@@ -119,10 +133,6 @@ function gameMain() {
         }        
     }    
 
-    function bullet() {
-
-    }
-
     function drawTank() {
         ctx.beginPath();
         ctx.rect(x, y, w, h);
@@ -147,12 +157,23 @@ function gameMain() {
         ctx.closePath();
     }
     
-    function update() {
+    function drawgridMap () {        
+        for (let c = 0; c < columnCount; c++) {
+            for (let r = 0; r < rowCount; r++) {
+                ctx.beginPath();
+                ctx.rect(gridMap[c][r].x, gridMap[c][r].y, cellWidth, cellHeight);
+                ctx.strokeStyle = "gray";
+                ctx.lineWidth = 0.3;
+                ctx.stroke();
+                ctx.closePath();            
+            }
+        }    
         
     }
 
     function render() {
         ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+        drawgridMap();
         drawTank();
 
         bulletManager.forEach(bullet => {
