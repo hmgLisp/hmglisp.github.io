@@ -95,7 +95,10 @@ function gameMain() {
         }
     }
 
-    window.addEventListener("deviceorientation", handleOrientation, false);
+    if (window.deviceOrientationEvent) {
+        window.addEventListener("deviceorientation", handleOrientation, false);
+        document.getElementById("score").innerText = "no!";
+    }
     document.addEventListener("keydown", keyDownHandler, false);    
     document.addEventListener("keyup", keyUpHandler, false);
     
