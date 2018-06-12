@@ -3,7 +3,8 @@ window.addEventListener("load", gameMain, false);
 function gameMain() {
     var canvas = document.getElementById("my_game");
     var ctx = canvas.getContext("2d");
-    
+
+    var score = 0;
     var x = canvas.clientWidth / 2;
     var y = canvas.clientHeight / 2;
     var w = 30;
@@ -204,6 +205,8 @@ function gameMain() {
         if (pressedSpace == true) {
             bulletManager.push(new cBullet(muzzleX, muzzleY, [muzzleX - barrelX, muzzleY - barrelY]));
             pressedSpace = false;
+            score++;
+            document.getElementById('score').textContent = score;
         }
 
         barrelX = (x + w / 2);
