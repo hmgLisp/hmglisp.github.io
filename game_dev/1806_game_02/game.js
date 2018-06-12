@@ -95,13 +95,14 @@ function gameMain() {
         }
     }
 
-    if (window.deviceOrientationEvent) {
+    if (window.DeviceOrientationEvent) { 
         window.addEventListener("deviceorientation", handleOrientation, false);
         document.getElementById("score").innerText = "ok!";
     }
     else {
         document.getElementById("score").innerText = "no!";
     }
+    
     document.addEventListener("keydown", keyDownHandler, false);    
     document.addEventListener("keyup", keyUpHandler, false);
     
