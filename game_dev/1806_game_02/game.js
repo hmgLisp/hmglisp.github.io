@@ -97,6 +97,9 @@ function gameMain() {
 
     if (window.deviceOrientationEvent) {
         window.addEventListener("deviceorientation", handleOrientation, false);
+        document.getElementById("score").innerText = "ok!";
+    }
+    else {
         document.getElementById("score").innerText = "no!";
     }
     document.addEventListener("keydown", keyDownHandler, false);    
