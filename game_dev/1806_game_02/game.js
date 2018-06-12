@@ -95,9 +95,10 @@ function gameMain() {
         }
     }
 
+    window.addEventListener("deviceorientation", handleOrientation, false);
     document.addEventListener("keydown", keyDownHandler, false);    
     document.addEventListener("keyup", keyUpHandler, false);
-    document.addEventListener("deviceorientation", handleOrientation, false);
+    
 
     function handleOrientation (e) {
         beta = e.beta;
