@@ -41,6 +41,10 @@ function gameMain() {
     var gridMap = [];
     var bricks = [];
     
+    //자이로 센서
+    var beta = 0;
+    var gamma = 0;
+
     for (var c = 0; c < columnCount; c++) {
         gridMap[c] = [];
         for (var r = 0; r < rowCount; r++) {
@@ -93,6 +97,12 @@ function gameMain() {
 
     document.addEventListener("keydown", keyDownHandler, false);    
     document.addEventListener("keyup", keyUpHandler, false);
+    document.addEventListener("deviceorientation", handleOrientation, false);
+
+    function handleOrientation (e) {
+        beta = e.beta;
+        gamma = e.gamma;
+    }
 
     function keyDownHandler(e) {
         // 32: space
@@ -133,6 +143,13 @@ function gameMain() {
             pressedRight = false;
         }        
     }    
+
+    function drawHUD () {
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("x: " + beta, 8, 20);
+        ctx.fillText("y: " + gamma, 8, 40);
+    }
 
     function drawTank() {
         ctx.beginPath();
@@ -176,6 +193,7 @@ function gameMain() {
         ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
         drawgridMap();
         drawTank();
+        drawHUD();
 
         bulletManager.forEach(bullet => {
             bullet.render(ctx);
