@@ -6,22 +6,85 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        * {
+            margin: 0px;
+            padding: 0px;            
+        }
+
         #plotArea {
             border: 1px solid gray;
             width:297mm;
-            height:210mm;
+            height:210mm;            
         }
 
-        .col-1 {
-            border: 1px solid gray;
-            font-size: 100px;
+        #ctr {            
+            margin-top: 50px;            
+            border: 1px solid   gray;
+        }
+
+        .row {
+            margin: 20px;
+            /* border: 1px solid gray; */
+            font-size: 55px; 
+
+        }
+
+        .col {
+            display: inline-block;            
+            /* border: 1px solid gray; */
+            
+        }        
+
+        .col-1 {            
+            width: 250px;
+            display: inline-block;            
+            /* border: 1px solid gray; */
+        }
+        .col ul {
+            background: rgb(244,244,244);
+            display:none;  /*평상시에는 서브메뉴가 안보이게 하기 */
+            height:auto;
+            position:absolute;
+            width:300px;
+            z-index:200;
+        }
+
+        .col:hover ul {
+            display: block;            
+        }
+
+        .col ul li:hover {
+            background-color: rgb(182, 182, 182);
         }
 
     </style>
 </head>
 <body>
     <div id="plotArea">
-        <div class="col-1">도착지</div>
+        <div class="row">
+            <div class="col-1">도착지: </div>
+            <div class="col">대신화물(평택송탄)
+                <ul>
+                    <li onclick="document.querySelector('.col').innerHTML = '경동화물'">경동화물</li>
+                    <li>1</li>
+                    <li>1</li>
+                    <li>1</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">받는사람: </div>
+            <div class="col">김동길 차장님 (000-0000-0000)</div>
+        </div>
+        <div class="row">
+            <div class="col-1">보낸사람: </div>
+            <div class="col">한성센트럴</div>
+        </div>
+        
+        <div id="ctr">
+            <input type="text" value="fjkdlsfjlsd">
+        </div>
     </div>
+    
 </body>
 </html>
