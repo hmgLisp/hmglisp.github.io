@@ -29,6 +29,7 @@ function gameMain() {
 
     var pressedSpace = false;
 
+    var bullets = [];
     var bulletManager = [];
     
     
@@ -59,11 +60,12 @@ function gameMain() {
             this.r = 5;              
             this.speed = 5;          
             this.dir = dir;
+            this.live = true;
         }
 
         update() {
             let dy = this.y + -this.speed;
-            if (dy - this.r < 0) {
+            if (dy - this.r < 100) {
                 delete this;
             }
             if (this.dir[0] == 0) {
@@ -157,7 +159,7 @@ function gameMain() {
         ctx.fillStyle = "#0095DD";
         ctx.fillText("x: " + beta, 8, 20);
         ctx.fillText("y: " + gamma, 8, 40);
-        ctx.fillText("bullet count: " + bulletManager.length, 8, 60);
+        ctx.fillText("bullet count: " + bullets.length, 8, 60);
     }
 
     function drawTank() {
@@ -204,7 +206,7 @@ function gameMain() {
         drawTank();
         drawHUD();
 
-        bulletManager.forEach(bullet => {
+        bullets.forEach(bullet => {
             bullet.render(ctx);
         });
 
@@ -230,7 +232,7 @@ function gameMain() {
         }
 
         if (pressedSpace == true) {
-            bulletManager.push(new cBullet(muzzleX, muzzleY, [muzzleX - barrelX, muzzleY - barrelY]));
+            bullets.push(new cBullet(muzzleX, muzzleY, [muzzleX - barrelX, muzzleY - barrelY]));
             pressedSpace = false;
             score++;
             document.getElementById('score').textContent = score;
