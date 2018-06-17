@@ -2,7 +2,7 @@ window.addEventListener("load", gameMain, false);
 
 function gameMain() {
     var canvas = document.getElementById("my_game");
-    var ctx = canvas.getContext("2d");
+    var ctx = canvas.getContext("2d");   
 
     var score = 0;
     var x = canvas.clientWidth / 2;
@@ -150,13 +150,14 @@ function gameMain() {
         else if (e.keyCode == 39) {
             pressedRight = false;
         }        
-    }    
+    }   
 
     function drawHUD () {
         ctx.font = "16px Arial";
         ctx.fillStyle = "#0095DD";
         ctx.fillText("x: " + beta, 8, 20);
         ctx.fillText("y: " + gamma, 8, 40);
+        ctx.fillText("bullet count: " + bulletManager.length, 8, 60);
     }
 
     function drawTank() {
@@ -259,6 +260,8 @@ function gameMain() {
         dy = 0;
         
         //requestAnimationFrame(render);
+
+        
     }
     // render();
 
