@@ -157,21 +157,6 @@ function gameMain() {
     }
 
     function update () {
-        bullets.forEach(bullet => {
-            bullet.update();
-        });
-    }
-
-    function render() {
-        ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-        drawgridMap();
-        drawTank();
-        drawHUD();
-
-        bullets.forEach(bullet => {
-            bullet.render(ctx);
-        });
-
         if (pressedUp == true) {
             dy = -speed;            
         }   
@@ -194,6 +179,10 @@ function gameMain() {
         }
 
         if (pressedSpace == true) {
+            bullets.forEach(bullet => {
+                if ()
+                
+            }); 
             bullets.push(new cBullet(muzzleX, muzzleY, 5, [muzzleX - barrelX, muzzleY - barrelY]));
             pressedSpace = false;
             score++;
@@ -222,13 +211,38 @@ function gameMain() {
 
         dx = 0;
         dy = 0;
-        
-        //requestAnimationFrame(render);
 
-        
+        bullets.forEach(bullet => {
+            if (bullet.show == true) {
+                bullet.update();                
+            }
+
+            if (!(bullet.x - bullet.r > 0 
+                && bullet.x + bullet.r < canvas.clientWidth
+                && bullet.y - bullet.r > 0 
+                && bullet.y + bullet.r < canvas.clientHeight)) {
+                bullet.show = false;
+            }
+        });
     }
-    // render();
 
-    setInterval(update, 20);
-    setInterval(render, 20);
+    function render() {
+        ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+        drawgridMap();
+        drawTank();
+        drawHUD();
+
+        bullets.forEach(bullet => {
+            bullet.render(ctx);
+        });
+
+            
+    }
+    
+    function gameLoop () {
+        update();
+        render();
+    }
+    
+    setInterval(gameLoop, 20);
 }
