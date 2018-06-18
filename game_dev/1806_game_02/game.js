@@ -51,51 +51,7 @@ function gameMain() {
         for (var r = 0; r < rowCount; r++) {
             gridMap[c][r] = {x: (c * cellWidth), y: (r * cellHeight), state: 0};            
         }
-    }
-
-    class cBullet {
-        constructor(x, y, dir) {
-            this.x = x;
-            this.y = y;
-            this.r = 5;              
-            this.speed = 5;          
-            this.dir = dir;
-            this.live = true;
-        }
-
-        update() {
-            let dy = this.y + -this.speed;
-            if (dy - this.r < 100) {
-                delete this;
-            }
-            if (this.dir[0] == 0) {
-                if (this.dir[1] > 0) {
-                    this.y += this.speed;                          
-                }
-                else {
-                    this.y += -this.speed;         
-                }
-            }
-            else {
-                if (this.dir[0] > 0) {
-                    this.x += this.speed;
-                }
-                else {
-                    this.x += -this.speed;
-                }
-            }            
-        }            
-
-        render(ctx) {
-            this.update();
-
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
-            ctx.fillStyle = "red";
-            ctx.fill();
-            ctx.closePath();            
-        }
-    }
+    }    
 
     if (window.DeviceOrientationEvent) { 
         window.addEventListener("deviceorientation", handleOrientation, false);
@@ -200,6 +156,12 @@ function gameMain() {
         
     }
 
+    function update () {
+        bullets.forEach(bullet => {
+            bullet.update();
+        });
+    }
+
     function render() {
         ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
         drawgridMap();
@@ -232,7 +194,7 @@ function gameMain() {
         }
 
         if (pressedSpace == true) {
-            bullets.push(new cBullet(muzzleX, muzzleY, [muzzleX - barrelX, muzzleY - barrelY]));
+            bullets.push(new cBullet(muzzleX, muzzleY, 5, [muzzleX - barrelX, muzzleY - barrelY]));
             pressedSpace = false;
             score++;
             document.getElementById('score').textContent = score;
@@ -267,6 +229,6 @@ function gameMain() {
     }
     // render();
 
-    //setInterval(update, 20);
+    setInterval(update, 20);
     setInterval(render, 20);
 }
