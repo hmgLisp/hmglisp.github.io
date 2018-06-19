@@ -23,7 +23,7 @@ class cBullet {
     }
 }
 
-class  {
+class cManagerBullet {
     constructor () {
         this.bullets = [];
     }

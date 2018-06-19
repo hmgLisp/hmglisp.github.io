@@ -1,26 +1,22 @@
 window.addEventListener("load", gameMain, false);
 
+
 function gameMain() {
     var canvas = document.getElementById("my_game");
     var ctx = canvas.getContext("2d");   
 
-    var score = 0;
-    var x = canvas.clientWidth / 2;
-    var y = canvas.clientHeight / 2;
-    var w = 30;
-    var h = 30;
-    var speed = 2;    
+    var tank = new cTank(canvas.clientWidth / 2, canvas.clientHeight / 2);    
 
     var dx = 0;
     var dy = 0;
    
-    var barrelX = x + w / 2;
-    var barrelY = y + h / 2;
-    var barrelLen = -30;
-    var barrelTHK = 5;
+    // var barrelX = x + w / 2;
+    // var barrelY = y + h / 2;
+    // var barrelLen = -30;
+    // var barrelTHK = 5;
     
-    var muzzleX = barrelX;
-    var muzzleY = barrelY + barrelLen;
+    // var muzzleX = barrelX;
+    // var muzzleY = barrelY + barrelLen;
     
     var pressedUp = false;
     var pressedDown = false;
@@ -28,7 +24,7 @@ function gameMain() {
     var pressedRight = false;
 
     var pressedSpace = false;
-    
+
     var managerBullet = new cManagerBullet();
     
     //gridMap map
@@ -116,22 +112,22 @@ function gameMain() {
         ctx.fillText("bullet count: " + managerBullet.bullets.length, 8, 60);
     }
 
-    function drawTank() {
-        ctx.beginPath();
-        ctx.rect(x, y, w, h);
-        ctx.fillStyle = "blue";
-        ctx.fill();
-        ctx.closePath();
+    // function drawTank() {
+    //     ctx.beginPath();
+    //     ctx.rect(x, y, w, h);
+    //     ctx.fillStyle = "blue";
+    //     ctx.fill();
+    //     ctx.closePath();
 
-        //draww barrel
-        ctx.beginPath();
-        ctx.moveTo(barrelX, barrelY);
-        ctx.lineTo(muzzleX, muzzleY);
-        ctx.lineWidth = barrelTHK;
-        ctx.strokeStyle = "red";
-        ctx.stroke();
-        ctx.closePath();
-    }
+    //     //draww barrel
+    //     ctx.beginPath();
+    //     ctx.moveTo(barrelX, barrelY);
+    //     ctx.lineTo(muzzleX, muzzleY);
+    //     ctx.lineWidth = barrelTHK;
+    //     ctx.strokeStyle = "red";
+    //     ctx.stroke();
+    //     ctx.closePath();
+    // }
     
     function drawgridMap () {        
         for (let c = 0; c < columnCount; c++) {
@@ -148,67 +144,68 @@ function gameMain() {
     }
 
     function update () {
-        if (pressedUp == true) {
-            dy = -speed;            
-        }   
-        else if (pressedDown == true) {
-            dy = speed;
-        }
-        else if (pressedLeft == true) {
-            dx = -speed;
-        }
-        else if (pressedRight == true) {
-            dx = speed;
-        }
+        // if (pressedUp == true) {
+        //     dy = -speed;            
+        // }   
+        // else if (pressedDown == true) {
+        //     dy = speed;
+        // }
+        // else if (pressedLeft == true) {
+        //     dx = -speed;
+        // }
+        // else if (pressedRight == true) {
+        //     dx = speed;
+        // }
 
-        if (x + dx > 0 && x + dx + w < canvas.clientWidth) {
-            x += dx;
-        }   
+        // if (x + dx > 0 && x + dx + w < canvas.clientWidth) {
+        //     x += dx;
+        // }   
 
-        if (y + dy > 0 && y + dy < canvas.clientHeight) {
-            y += dy;
-        }
+        // if (y + dy > 0 && y + dy < canvas.clientHeight) {
+        //     y += dy;
+        // }
 
-        if (pressedSpace == true) {            
-            managerBullet.fire(muzzleX, muzzleY, [muzzleX - barrelX, muzzleY - barrelY]);
+        // if (pressedSpace == true) {            
+        //     managerBullet.fire(muzzleX, muzzleY, [muzzleX - barrelX, muzzleY - barrelY]);
 
-            pressedSpace = false;
-            score++;
-            document.getElementById('score').textContent = score;
-        }
+        //     pressedSpace = false;
+        //     score++;
+        //     document.getElementById('score').textContent = score;
+        // }
 
-        barrelX = (x + w / 2);
-        barrelY = y + h / 2;  
+        // barrelX = (x + w / 2);
+        // barrelY = y + h / 2;  
 
-        if (pressedUp == true) {
-            muzzleX = barrelX;
-            muzzleY = barrelY + barrelLen;
-        }
-        else if (pressedDown == true) {
-            muzzleX = barrelX;
-            muzzleY = barrelY + -barrelLen;
-        }
-        else if (pressedLeft == true) {
-            muzzleX = barrelX + barrelLen;
-            muzzleY = barrelY;
-        }
-        else if (pressedRight == true) {
-            muzzleX = barrelX + -barrelLen;
-            muzzleY = barrelY;
-        }        
+        // if (pressedUp == true) {
+        //     muzzleX = barrelX;
+        //     muzzleY = barrelY + barrelLen;
+        // }
+        // else if (pressedDown == true) {
+        //     muzzleX = barrelX;
+        //     muzzleY = barrelY + -barrelLen;
+        // }
+        // else if (pressedLeft == true) {
+        //     muzzleX = barrelX + barrelLen;
+        //     muzzleY = barrelY;
+        // }
+        // else if (pressedRight == true) {
+        //     muzzleX = barrelX + -barrelLen;
+        //     muzzleY = barrelY;
+        // }        
 
         dx = 0;
         dy = 0;
 
+        tank.update();
         managerBullet.update();        
     }
 
     function render() {
         ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
         drawgridMap();
-        drawTank();
         drawHUD();
-
+        
+        tank.render(ctx);
         managerBullet.render(ctx);
     }
     
