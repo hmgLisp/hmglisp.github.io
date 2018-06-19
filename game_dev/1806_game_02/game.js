@@ -180,7 +180,7 @@ function gameMain() {
 
         if (pressedSpace == true) {
             bullets.forEach(bullet => {
-                if ()
+                //if ()
                 
             }); 
             bullets.push(new cBullet(muzzleX, muzzleY, 5, [muzzleX - barrelX, muzzleY - barrelY]));
