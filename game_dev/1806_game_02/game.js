@@ -28,11 +28,6 @@ function gameMain() {
     var pressedRight = false;
 
     var pressedSpace = false;
-
-    // var bullets = [];
-    // var bullets_tmp = [];
-    // var bulletManager = [];
-    
     
     var managerBullet = new cManagerBullet();
     
@@ -127,14 +122,7 @@ function gameMain() {
         ctx.fillStyle = "blue";
         ctx.fill();
         ctx.closePath();
-        
-        //draw barrel
-        // ctx.beginPath();        
-        // ctx.rect(barrelX - barrelT / 2, barrelY, barrelT, barrelLen);
-        // ctx.fillStyle = "red";
-        // ctx.fill();     
-        // ctx.closePath(); 
-        
+
         //draww barrel
         ctx.beginPath();
         ctx.moveTo(barrelX, barrelY);
