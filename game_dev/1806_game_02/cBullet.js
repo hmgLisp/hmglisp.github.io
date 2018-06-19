@@ -1,8 +1,8 @@
 class cBullet {
-    constructor (x, y, r, dir) {
+    constructor (x, y, dir) {
         this.x = x;
         this.y = y;
-        this.r = r;         
+        this.r = 5;         
         this.dir = dir;     //[x, y];
         this.show = true;        
     }
@@ -20,5 +20,27 @@ class cBullet {
         ctx.fillStyle = "red";
         ctx.fill();
         ctx.closePath();
+    }
+}
+
+class  {
+    constructor () {
+        this.bullets = [];
+    }
+
+    fire (x, y, dir) {
+        this.bullets.push(new cBullet(x, y, dir));
+    }
+
+    update () {
+        this.bullets.forEach(element => {
+            element.update();
+        });
+    }
+
+    render (ctx) {
+        this.bullets.forEach(element => {
+            element.render(ctx);
+        });
     }
 }

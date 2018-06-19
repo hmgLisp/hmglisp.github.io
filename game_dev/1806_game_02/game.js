@@ -29,9 +29,12 @@ function gameMain() {
 
     var pressedSpace = false;
 
-    var bullets = [];
-    var bulletManager = [];
+    // var bullets = [];
+    // var bullets_tmp = [];
+    // var bulletManager = [];
     
+    
+    var managerBullet = new cManagerBullet();
     
     //gridMap map
     var rowCount = 20;
@@ -115,7 +118,7 @@ function gameMain() {
         ctx.fillStyle = "#0095DD";
         ctx.fillText("x: " + beta, 8, 20);
         ctx.fillText("y: " + gamma, 8, 40);
-        ctx.fillText("bullet count: " + bullets.length, 8, 60);
+        ctx.fillText("bullet count: " + managerBullet.bullets.length, 8, 60);
     }
 
     function drawTank() {
@@ -178,12 +181,9 @@ function gameMain() {
             y += dy;
         }
 
-        if (pressedSpace == true) {
-            bullets.forEach(bullet => {
-                if ()
-                
-            }); 
-            bullets.push(new cBullet(muzzleX, muzzleY, 5, [muzzleX - barrelX, muzzleY - barrelY]));
+        if (pressedSpace == true) {            
+            managerBullet.fire(muzzleX, muzzleY, [muzzleX - barrelX, muzzleY - barrelY]);
+
             pressedSpace = false;
             score++;
             document.getElementById('score').textContent = score;
@@ -212,18 +212,7 @@ function gameMain() {
         dx = 0;
         dy = 0;
 
-        bullets.forEach(bullet => {
-            if (bullet.show == true) {
-                bullet.update();                
-            }
-
-            if (!(bullet.x - bullet.r > 0 
-                && bullet.x + bullet.r < canvas.clientWidth
-                && bullet.y - bullet.r > 0 
-                && bullet.y + bullet.r < canvas.clientHeight)) {
-                bullet.show = false;
-            }
-        });
+        managerBullet.update();        
     }
 
     function render() {
@@ -232,11 +221,7 @@ function gameMain() {
         drawTank();
         drawHUD();
 
-        bullets.forEach(bullet => {
-            bullet.render(ctx);
-        });
-
-            
+        managerBullet.render(ctx);
     }
     
     function gameLoop () {
