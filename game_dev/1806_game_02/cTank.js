@@ -1,19 +1,21 @@
 class cTank {
     constructor (x, y) {
-        this.x = x;
-        this.y = y;
+        this.position = {x: x, y: y};
         this.w = 30;
-        this.h = 30;        
+        this.h = 30;  
+        this.forword = {x: 0, y: -1};
+        this.moveSpeed = 2;
     }
 
-    update () {
-
+    update() {
+        this.position.x += (this.forword.x * this.moveSpeed);
+        this.position.y += (this.forword.y * this.moveSpeed);
     }
 
-    render (ctx) {
+    render(ctx) {
         ctx.beginPath();
-        ctx.rect(this.x, this.y, this.w, this.h);
-        ctx.fillStyle = "blue";
+        ctx.rect(this.position.x, this.position.y, this.w, this.h);
+        ctx.fillStyle = "red";
         ctx.fill();
         ctx.closePath();
 
@@ -25,5 +27,9 @@ class cTank {
         // ctx.strokeStyle = "red";
         // ctx.stroke();
         // ctx.closePath();        
+    }
+    
+    cnangeForword(vecForword) {
+        this.forword = vecForword;
     }
 }
