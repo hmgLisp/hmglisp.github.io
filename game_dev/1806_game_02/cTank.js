@@ -4,12 +4,11 @@ class cTank {
         this.w = 30;
         this.h = 30;  
         this.forword = {x: 0, y: -1};
-        this.moveSpeed = 2;
+        this.moveSpeed = 2;       
     }
 
     update() {
-        this.position.x += (this.forword.x * this.moveSpeed);
-        this.position.y += (this.forword.y * this.moveSpeed);
+        
     }
 
     render(ctx) {
@@ -31,5 +30,5 @@ class cTank {
     
     cnangeForword(vecForword) {
         this.forword = vecForword;
-    }
+    }    
 }

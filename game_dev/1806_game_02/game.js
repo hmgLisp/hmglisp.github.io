@@ -4,59 +4,27 @@ function main() {
     var canvas = document.getElementById("my_game");
     var ctx = canvas.getContext("2d");
     
-    var tank = new cTank(canvas.clientWidth / 2, canvas.clientHeight / 2);
-    var managerBullet = new cManagerBullet();
+    var inputKeys = [];
 
     document.addEventListener("keydown", keyDownHandler, false);    
     document.addEventListener("keyup", keyUpHandler, false);
 
-    var pressedUp = false;
-    var pressedDown = false;
-    var pressedLeft = false;
-    var pressedRight = false;
-    var pressedSpace = false;
-    
-    function keyDownHandler(e) {
-        // 32: space
-        // 37: arrow left
-        // 38: arrow up
-        // 39: arrow right
-        // 40: arrow down
-
-        if (e.keyCode == 38) {
-            tank.cnangeForword({x: 0, y: -1});            
-        }
-        else if (e.keyCode == 40) {
-            tank.cnangeForword({x: 0, y: 1});
-        }
-        else if (e.keyCode == 37) {
-            tank.cnangeForword({x: -1, y: 0});
-        }
-        else if (e.keyCode == 39) {
-            tank.cnangeForword({x: 1, y: 0});
-        }
-
-        if (e.keyCode == 32) {
-            pressedSpace = true;
-        }
+    // 32: space
+    // 37: arrow left
+    // 38: arrow up
+    // 39: arrow right
+    // 40: arrow down
+    function keyDownHandler(e) {        
+        inputKeys[e.keyCode] = true;               
     }
 
     function keyUpHandler(e) {
-        if (e.keyCode == 38) {
-            pressedUp = false;
-        }
-        else if (e.keyCode == 40) {
-            pressedDown = false;
-        }
-        else if (e.keyCode == 37) {
-            pressedLeft = false;
-        }
-        else if (e.keyCode == 39) {
-            pressedRight = false;
-        }        
+        inputKeys[e.keyCode] = false;
     }
 
-    function run() {        
+    function run() {
+        var playArea = {minX: 0, minY: 0, maxX: canvas.clientWidth, maxY: canvas.clientHeight};
+        var tank = {x:canvas.clientWidth/2, y:canvas.clientHeight/2, w:30, h:30, forword:{x:0, y:-1}, moveSpeed:2};
         
         //gridMap map
         var rowCount = 20;
@@ -87,17 +55,40 @@ function main() {
             
         }
     
-        function update () {      
-            tank.update();
-            managerBullet.update();        
+        function update () {    
+            if(inputKeys[37]) {
+                tank.forword = {x: -tank.moveSpeed, y: 0};
+            }
+            else if(inputKeys[38]) {
+                tank.forword = {x: 0, y: -tank.moveSpeed};
+            } 
+            else if(inputKeys[39]) {
+                tank.forword = {x: tank.moveSpeed, y: 0};
+            }
+            else if(inputKeys[40]) {
+                tank.forword = {x: 0, y: tank.moveSpeed};
+            }
+            
+            let dx = tank.x + tank.forword.x;
+            let dy = tank.y + tank.forword.y;
+
+            if(dx > playArea.minX && dx + tank.w < playArea.maxX
+            && dy > playArea.minY && dy + tank.h < playArea.maxY) {
+                tank.x = dx;
+                tank.y = dy;
+            }
         }
     
         function render() {
             ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-            drawgridMap();        
+            drawgridMap();     
+            ctx.beginPath();
+            ctx.rect(tank.x, tank.y, tank.w, tank.h);
+            ctx.fillStyle = "red";
+            ctx.fill();
+            ctx.closePath();       
             
-            tank.render(ctx);
-            managerBullet.render(ctx);
+            
         }
         
         function gameLoop () {
