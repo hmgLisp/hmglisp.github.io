@@ -3,6 +3,7 @@ window.addEventListener("load", main, false);
 function main() {
     var canvas = document.getElementById("my_game");
     var ctx = canvas.getContext("2d");
+    
     var tank = new cTank(canvas.clientWidth / 2, canvas.clientHeight / 2);
     var managerBullet = new cManagerBullet();
 
