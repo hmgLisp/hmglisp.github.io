@@ -3,14 +3,15 @@ class cBullet {
         this.x = x;
         this.y = y;
         this.r = 5;         
-        this.dir = dir;     //[x, y];
+        this.dir = dir;     //{x, y};
+        this.moveSpeed = 5;
         this.show = true;        
     }
 
     update () {
         if (this.show == true) {
-            this.x += (this.dir[0] * 0.2);
-            this.y += (this.dir[1] * 0.2);
+            this.x += (this.dir.x * this.moveSpeed);
+            this.y += (this.dir.y * this.moveSpeed);
         }        
     }
 

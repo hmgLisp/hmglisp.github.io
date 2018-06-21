@@ -24,8 +24,9 @@ function main() {
 
     function run() {
         let playArea = {minX: 0, minY: 0, maxX: canvas.clientWidth, maxY: canvas.clientHeight};
-        let tank = {x:canvas.clientWidth/2, y:canvas.clientHeight/2, w:30, h:30, forword:{x:0, y:-1}, moveSpeed:2, barrelLen: 30, muzzlePos: {x:0, y:0}};        
-        
+        let tank = {x:canvas.clientWidth/2, y:canvas.clientHeight/2, w:30, h:30, forword:{x:0, y:-1}, moveSpeed:2, barrelLen: 30, muzzlePos: {x:0, y:0}};                
+        let bullets = [];
+
         //gridMap map
         var rowCount = 20;
         var columnCount = 20;
@@ -40,6 +41,13 @@ function main() {
                 gridMap[c][r] = {x: (c * cellWidth), y: (r * cellHeight), state: 0};            
             }
         }  
+
+        function fireTank() {
+            if(inputKeys[32]) {
+                bullets.push(new cBullet(tank.muzzlePos.x, tank.muzzlePos.y, tank.forword));
+                inputKeys[32] = false;
+            }
+        }
 
         function turnTank() {
             if(inputKeys[37]) {
@@ -73,6 +81,11 @@ function main() {
         function update() {    
             turnTank();
             moveTank();
+            fireTank();
+
+            bullets.forEach(element => {
+                element.update();
+            });
         }
 
         function drawgridMap() {        
@@ -106,7 +119,11 @@ function main() {
         function render() {
             ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
             drawgridMap();   
-            drawTank();            
+            drawTank();   
+            
+            bullets.forEach(element => {
+                element.render(ctx);
+            });
         }
         
         function gameLoop() {
