@@ -32,6 +32,10 @@ function main() {
         var columnCount = 20;
         var cellWidth = 30;
         var cellHeight = 30;
+
+        
+        var lastTime;
+        var fps;
     
         var gridMap = [];      
     
@@ -86,6 +90,22 @@ function main() {
             bullets.forEach(element => {
                 element.update();
             });
+            
+            if(!lastTime) {
+                lastTime = Date.now();
+                fps = 0;   
+                console.log("fps");
+            }
+
+            let delta = (Date.now() - lastTime) / 1000;
+            lastTime = Date.now();
+            fps = 1/delta;
+        }
+
+        function drawHUN() {
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "#0095DD";
+            ctx.fillText(fps, 8, 20);
         }
 
         function drawgridMap() {        
@@ -119,7 +139,8 @@ function main() {
         function render() {
             ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
             drawgridMap();   
-            drawTank();   
+            drawTank();  
+            drawHUN();
             
             bullets.forEach(element => {
                 element.render(ctx);
@@ -129,9 +150,10 @@ function main() {
         function gameLoop() {
             update();
             render();
+            requestAnimationFrame(gameLoop);
         }
         
-        setInterval(gameLoop, 30);
+        gameLoop();
     }
 
     run();    
