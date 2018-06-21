@@ -84,7 +84,7 @@ function main() {
             drawgridMap();     
             ctx.beginPath();
             ctx.rect(tank.x, tank.y, tank.w, tank.h);
-            ctx.fillStyle = "red";
+            ctx.fillStyle = "rgb(0, 149, 221)";
             ctx.fill();
             ctx.closePath();       
             

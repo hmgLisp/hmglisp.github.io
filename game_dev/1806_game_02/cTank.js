@@ -14,7 +14,7 @@ class cTank {
     render(ctx) {
         ctx.beginPath();
         ctx.rect(this.position.x, this.position.y, this.w, this.h);
-        ctx.fillStyle = "red";
+        ctx.fillStyle = "#0095DD";
         ctx.fill();
         ctx.closePath();
 
