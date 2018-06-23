@@ -20,31 +20,7 @@ function main() {
 
     function keyUpHandler(e) {
         inputKeys[e.keyCode] = false;
-    }
-
-    class cTimer {
-        constructor() {
-            this.lastTime;
-            this.deltaTime = 0;
-            this.frame = 0;
-            this.fps = 0;
-        }
-
-        update() {
-            if(!this.lastTime) {
-                this.lastTime = Date.now();
-            }
-            this.deltaTime += (Date.now() - this.lastTime);
-            this.lastTime = Date.now();
-            console.log(this.deltaTime);
-            if(this.deltaTime > 1000) {
-                this.deltaTime = 0;
-                this.fps = this.frame;
-                this.frame = 0;
-            }
-            this.frame++;
-        }
-    }
+    }     
 
     function run() {
         let playArea = {minX: 0, minY: 0, maxX: canvas.clientWidth, maxY: canvas.clientHeight};
@@ -103,6 +79,15 @@ function main() {
                 tank.muzzlePos.y = (tank.y + tank.h / 2) + (tank.forword.y * tank.barrelLen);
             }
         }
+
+        function areaCheck(x, y, w, h) {
+            if(playArea.minX > x - w) return true;
+            if(playArea.maxX < x + w) return true;
+            if(playArea.minY > y - h) return true;
+            if(playArea.maxY < y + h) return true;
+            
+            return false;
+        }        
     
         function update() {    
             turnTank();
@@ -110,9 +95,16 @@ function main() {
             fireTank();
             timer.update();
 
-            bullets.forEach(element => {
-                
-                element.update();
+            bullets.forEach(bullet => {
+                if(1) {
+                    let dx = bullet.deltaX;
+                    let dy = bullet.deltaY;
+                    if(dx < 0 && dx < maxX &&
+                        dy > 0 && dy < maxY) {
+                            bullet.
+                        }
+                        bullet.update();
+                }
             });           
         }
 
