@@ -22,20 +22,42 @@ function main() {
         inputKeys[e.keyCode] = false;
     }
 
+    class cTimer {
+        constructor() {
+            this.lastTime;
+            this.deltaTime = 0;
+            this.frame = 0;
+            this.fps = 0;
+        }
+
+        update() {
+            if(!this.lastTime) {
+                this.lastTime = Date.now();
+            }
+            this.deltaTime += (Date.now() - this.lastTime);
+            this.lastTime = Date.now();
+            console.log(this.deltaTime);
+            if(this.deltaTime > 1000) {
+                this.deltaTime = 0;
+                this.fps = this.frame;
+                this.frame = 0;
+            }
+            this.frame++;
+        }
+    }
+
     function run() {
         let playArea = {minX: 0, minY: 0, maxX: canvas.clientWidth, maxY: canvas.clientHeight};
         let tank = {x:canvas.clientWidth/2, y:canvas.clientHeight/2, w:30, h:30, forword:{x:0, y:-1}, moveSpeed:2, barrelLen: 30, muzzlePos: {x:0, y:0}};                
         let bullets = [];
+
+        let timer = new cTimer();
 
         //gridMap map
         var rowCount = 20;
         var columnCount = 20;
         var cellWidth = 30;
         var cellHeight = 30;
-
-        
-        var lastTime;
-        var fps;
     
         var gridMap = [];      
     
@@ -86,26 +108,18 @@ function main() {
             turnTank();
             moveTank();
             fireTank();
+            timer.update();
 
             bullets.forEach(element => {
+                
                 element.update();
-            });
-            
-            if(!lastTime) {
-                lastTime = Date.now();
-                fps = 0;   
-                console.log("fps");
-            }
-
-            let delta = (Date.now() - lastTime) / 1000;
-            lastTime = Date.now();
-            fps = 1/delta;
+            });           
         }
 
-        function drawHUN() {
+        function drawHUD() {
             ctx.font = "16px Arial";
             ctx.fillStyle = "#0095DD";
-            ctx.fillText(fps, 8, 20);
+            ctx.fillText(timer.fps, 8, 20);
         }
 
         function drawgridMap() {        
@@ -140,7 +154,7 @@ function main() {
             ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
             drawgridMap();   
             drawTank();  
-            drawHUN();
+            drawHUD();
             
             bullets.forEach(element => {
                 element.render(ctx);
