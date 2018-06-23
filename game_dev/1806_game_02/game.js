@@ -96,15 +96,12 @@ function main() {
             timer.update();
 
             bullets.forEach(bullet => {
-                if(1) {
-                    let dx = bullet.deltaX;
-                    let dy = bullet.deltaY;
-                    if(dx < 0 && dx < maxX &&
-                        dy > 0 && dy < maxY) {
-                            bullet.
-                        }
-                        bullet.update();
+                let dx = bullet.deltaX;
+                let dy = bullet.deltaY;
+                if(areaCheck(dx, dy, bullet.r, bullet.r)) {
+                    bullet.show = false;
                 }
+                bullet.update();
             });           
         }
 
