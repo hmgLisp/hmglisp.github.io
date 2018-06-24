@@ -27,7 +27,10 @@ function main() {
         let tank = {x:canvas.clientWidth/2, y:canvas.clientHeight/2, w:30, h:30, forword:{x:0, y:-1}, moveSpeed:2, barrelLen: 30, muzzlePos: {x:0, y:0}};                
         let bullets = [];
 
-        let timer = new cTimer();
+        const timer = new cTimer();
+
+        let fireInterval = 2;
+        let ft = 0;
 
         //gridMap map
         var rowCount = 20;
@@ -45,10 +48,15 @@ function main() {
         }  
 
         function fireTank() {
-            if(inputKeys[32]) {
+            ft += timer.deltaTime;
+            console.log(ft);
+            if(ft > fireInterval) {
                 bullets.push(new cBullet(tank.muzzlePos.x, tank.muzzlePos.y, tank.forword));
-                inputKeys[32] = false;
+                ft = 0;                                
             }
+            // if(inputKeys[32]) {
+            //     inputKeys[32] = false;
+            // }
         }
 
         function turnTank() {
@@ -92,8 +100,8 @@ function main() {
         function update() {    
             turnTank();
             moveTank();
-            fireTank();
             timer.update();
+            fireTank();
 
             bullets.forEach(bullet => {
                 let dx = bullet.deltaX;
@@ -106,9 +114,9 @@ function main() {
         }
 
         function drawHUD() {
-            ctx.font = "16px Arial";
-            ctx.fillStyle = "#0095DD";
-            ctx.fillText(timer.fps, 8, 20);
+            //ctx.font = "16px Arial";
+            //ctx.fillStyle = "#0095DD";
+            //ctx.fillText(timer.fps, 8, 20);
         }
 
         function drawgridMap() {        
