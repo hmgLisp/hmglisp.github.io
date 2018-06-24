@@ -5,18 +5,14 @@ class cTimer {
         this.frame = 0;
         this.fps = 0;
         this.tick;
-    }    
-
-    get deltaTime() {
-        console.log('f');
-        let dt = Date.now() - this.lastTime;
-        return dt;
-    }
+        this.deltaTime = 0;
+    }   
 
     update() {
         if(!this.lastTime) {
             this.lastTime = Date.now();
         }
+        this.deltaTime = Date.now() - this.lastTime;
 
         this.time += this.deltaTime;           
         this.lastTime = Date.now();

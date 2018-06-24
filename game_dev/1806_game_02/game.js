@@ -29,7 +29,7 @@ function main() {
 
         const timer = new cTimer();
 
-        let fireInterval = 2;
+        let fireInterval = 800;
         let ft = 0;
 
         //gridMap map
@@ -47,16 +47,12 @@ function main() {
             }
         }  
 
-        function fireTank() {
+        function fireTank() {             
             ft += timer.deltaTime;
-            console.log(ft);
             if(ft > fireInterval) {
                 bullets.push(new cBullet(tank.muzzlePos.x, tank.muzzlePos.y, tank.forword));
-                ft = 0;                                
+                ft = 0;
             }
-            // if(inputKeys[32]) {
-            //     inputKeys[32] = false;
-            // }
         }
 
         function turnTank() {
@@ -165,8 +161,7 @@ function main() {
         }
         
         gameLoop();
-    }
-
+    }    
     run();    
 }
 
