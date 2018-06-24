@@ -2,12 +2,13 @@ window.addEventListener("load", main, false);
 
 function main() {
     var canvas = document.getElementById("my_game");
-    var ctx = canvas.getContext("2d");
+    var ctx = canvas.getContext("2d");    
     
     var inputKeys = [];
 
     document.addEventListener("keydown", keyDownHandler, false);    
     document.addEventListener("keyup", keyUpHandler, false);
+    document.addEventListener("click", mouseDownHandler, false);
 
     // 32: space
     // 37: arrow left
@@ -21,6 +22,16 @@ function main() {
     function keyUpHandler(e) {
         inputKeys[e.keyCode] = false;
     }     
+
+    function mouseDownHandler(e) {
+        if(e.button == 0) {            
+            ctx.beginPath();
+            ctx.arc(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop, 20, 0, Math.PI*2);
+            ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.closePath();
+        }
+    }
 
     function run() {
         let playArea = {minX: 0, minY: 0, maxX: canvas.clientWidth, maxY: canvas.clientHeight};
@@ -144,7 +155,7 @@ function main() {
         }
     
         function render() {
-            ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+            //ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
             drawgridMap();   
             drawTank();  
             drawHUD();
