@@ -11,8 +11,11 @@ function editorMain () {
         if(!grid) {
             console.log('grid empty!!');
         }
-
-        
+        if(e.button == 0) {
+            let x = e.clientX - canvas.clientleft;
+            let y = e.clientY - canvas.clientTop;            
+            grid[Math.round(y / rowCount)][Math.round(x / colCount)].state = 1;
+        }
     }
 
     let grid = [];
@@ -25,7 +28,7 @@ function editorMain () {
         for (let r = 0; r < rowCount; r++) {
             grid[r] = [];
             for (let c = 0; c < colCount; c++) {
-                grid[r][c] = {x: (c * cellWidth), y: (r * cellHeight)};
+                grid[r][c] = {x: (c * cellWidth), y: (r * cellHeight), state: 0};
             }            
         }
     }
@@ -35,9 +38,16 @@ function editorMain () {
             for(let c = 0; c < colCount; c++) {
                 ctx.beginPath();
                 ctx.rect(grid[r][c].x, grid[r][c].y, cellWidth, cellHeight);
-                ctx.strokeStyle = "#0095DD";
-                ctx.lineWidth = 0.3;
-                ctx.stroke();
+                if(grid[r][c].state == 1) {
+                    ctx.fillStyle = "#0095DD";
+                    ctx.fill();
+                }
+                else {
+                    ctx.strokeStyle = "#0095DD";
+                    ctx.lineWidth = 0.3;
+                    ctx.stroke();
+                }
+
                 ctx.closePath();
             }
         }
