@@ -4,6 +4,16 @@ function editorMain () {
     var canvas = document.querySelector('#editor');
     //var canvas = document.getElementById('editor');
     var ctx = canvas.getContext('2d');
+    var but1 = document.querySelector('#but1');
+    but1.addEventListener('click', but1ClickHandler, false);
+
+    function but1ClickHandler(e) {
+        if(!grid) {
+            console.log('grid empty!!');
+        }
+
+        
+    }
 
     let grid = [];
     let rowCount = 20;
