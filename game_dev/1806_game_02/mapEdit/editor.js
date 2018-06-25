@@ -5,24 +5,31 @@ function editorMain () {
     //var canvas = document.getElementById('editor');
     var ctx = canvas.getContext('2d');
     var but1 = document.querySelector('#but1');
-    but1.addEventListener('click', but1ClickHandler, false);
-
-    function but1ClickHandler(e) {
-        if(!grid) {
-            console.log('grid empty!!');
-        }
-        if(e.button == 0) {
-            let x = e.clientX - canvas.clientleft;
-            let y = e.clientY - canvas.clientTop;            
-            grid[Math.round(y / rowCount)][Math.round(x / colCount)].state = 1;
-        }
-    }
-
+    
     let grid = [];
     let rowCount = 20;
     let colCount = 20;
     let cellWidth = 30;
     let cellHeight = 30;
+
+    canvas.addEventListener('click', but1ClickHandler, false);
+    
+    function but1ClickHandler(e) {
+        if(!grid) {
+            console.log('grid empty!!');
+        }
+        if(e.button == 0) {
+            let x = e.clientX - canvas.offsetLeft;
+            let y = e.clientY - canvas.offsetTop;              
+            grid[Math.floor(y / cellHeight)][Math.floor(x / cellWidth)].state = 1;
+        }
+        else if(e.button == 1) {
+            console.log('jfkld');
+            let x = e.clientX - canvas.offsetLeft;
+            let y = e.clientY - canvas.offsetTop;              
+            grid[Math.floor(y / cellHeight)][Math.floor(x / cellWidth)].state = 0;
+        }
+    }
 
     function initGrid() {
         for (let r = 0; r < rowCount; r++) {
@@ -40,6 +47,10 @@ function editorMain () {
                 ctx.rect(grid[r][c].x, grid[r][c].y, cellWidth, cellHeight);
                 if(grid[r][c].state == 1) {
                     ctx.fillStyle = "#0095DD";
+                    ctx.fill();
+                }
+                else if(grid[r][c].state == 1) {
+                    ctx.fillStyle = "red";
                     ctx.fill();
                 }
                 else {
