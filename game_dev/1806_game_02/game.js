@@ -49,7 +49,8 @@ function main() {
         var cellWidth = 30;
         var cellHeight = 30;
     
-        var gridMap = [];      
+        var gridMap = []; 
+             
     
         for (var c = 0; c < columnCount; c++) {
             gridMap[c] = [];
@@ -155,7 +156,7 @@ function main() {
         }
     
         function render() {
-            //ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+            ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
             drawgridMap();   
             drawTank();  
             drawHUD();
