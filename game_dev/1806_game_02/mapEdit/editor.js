@@ -12,18 +12,24 @@ function editorMain () {
     let cellWidth = 30;
     let cellHeight = 30;
 
-    canvas.addEventListener('click', but1ClickHandler, false);
+    canvas.addEventListener('mousedown', but1ClickHandler, false);
     
+    //캔버스위에서 우클릭시 메뉴 생성 하지 않는다.
+    //기본 메뉴 대신 커스텀 메뉴를 보이게 할 수 있다.
+    canvas.oncontextmenu = function() {
+        return false;
+    }
     function but1ClickHandler(e) {
         if(!grid) {
             console.log('grid empty!!');
         }
+        
         if(e.button == 0) {
             let x = e.clientX - canvas.offsetLeft;
             let y = e.clientY - canvas.offsetTop;              
             grid[Math.floor(y / cellHeight)][Math.floor(x / cellWidth)].state = 1;
         }
-        else if(e.button == 1) {
+        else if(e.button == 2) {
             console.log('jfkld');
             let x = e.clientX - canvas.offsetLeft;
             let y = e.clientY - canvas.offsetTop;              
