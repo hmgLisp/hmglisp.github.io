@@ -7,8 +7,7 @@ function main() {
     var inputKeys = [];
 
     document.addEventListener("keydown", keyDownHandler, false);    
-    document.addEventListener("keyup", keyUpHandler, false);
-    document.addEventListener("click", mouseDownHandler, false);
+    document.addEventListener("keyup", keyUpHandler, false);    
 
     // 32: space
     // 37: arrow left
@@ -21,17 +20,7 @@ function main() {
 
     function keyUpHandler(e) {
         inputKeys[e.keyCode] = false;
-    }     
-
-    function mouseDownHandler(e) {
-        if(e.button == 0) {            
-            ctx.beginPath();
-            ctx.arc(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop, 20, 0, Math.PI*2);
-            ctx.fillStyle = "#0095DD";
-            ctx.fill();
-            ctx.closePath();
-        }
-    }
+    }      
 
     function run() {
         let playArea = {minX: 0, minY: 0, maxX: canvas.clientWidth, maxY: canvas.clientHeight};
@@ -49,8 +38,7 @@ function main() {
         var cellWidth = 30;
         var cellHeight = 30;
     
-        var gridMap = []; 
-             
+        var gridMap = [];              
     
         for (var c = 0; c < columnCount; c++) {
             gridMap[c] = [];
@@ -58,6 +46,24 @@ function main() {
                 gridMap[c][r] = {x: (c * cellWidth), y: (r * cellHeight), state: 0};            
             }
         }  
+
+        document.addEventListener("mousedown", mouseDownHandler, false);
+        canvas.oncontextmenu = function() {
+            return false;
+        }
+
+        function mouseDownHandler(e) {
+            let x = Math.floor((e.clientX - canvas.offsetLeft) / cellWidth);
+            let y = Math.floor((e.clientY - canvas.offsetTop) / cellHeight);
+            console.log(x);
+            
+            if(e.button == 0) {            
+                gridMap[x][y].state = 1;                
+            }
+            else if(e.button == 2) {
+                gridMap[x][y].state = 0;                
+            }
+        }
 
         function fireTank() {             
             ft += timer.deltaTime;
@@ -132,9 +138,15 @@ function main() {
                 for (let r = 0; r < rowCount; r++) {
                     ctx.beginPath();
                     ctx.rect(gridMap[c][r].x, gridMap[c][r].y, cellWidth, cellHeight);
-                    ctx.strokeStyle = "gray";
-                    ctx.lineWidth = 0.3;
-                    ctx.stroke();
+                    if(gridMap[c][r].state == 1) {
+                        ctx.fillStyle = "#0095DD";
+                        ctx.fill();
+                    } 
+                    else if(gridMap[c][r].state == 0) {
+                        ctx.strokeStyle = "gray";
+                        ctx.lineWidth = 0.3;
+                        ctx.stroke();
+                    }
                     ctx.closePath();            
                 }
             }                
