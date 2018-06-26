@@ -24,13 +24,16 @@ function editorMain () {
             console.log('grid empty!!');
         }
         
+        /*
+            0 = none
+            1 = brick
+        */
         if(e.button == 0) {
             let x = e.clientX - canvas.offsetLeft;
             let y = e.clientY - canvas.offsetTop;              
             grid[Math.floor(y / cellHeight)][Math.floor(x / cellWidth)].state = 1;
         }
-        else if(e.button == 2) {
-            console.log('jfkld');
+        else if(e.button == 2) {            
             let x = e.clientX - canvas.offsetLeft;
             let y = e.clientY - canvas.offsetTop;              
             grid[Math.floor(y / cellHeight)][Math.floor(x / cellWidth)].state = 0;
