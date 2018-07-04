@@ -38,12 +38,34 @@ function main() {
         var cellWidth = 30;
         var cellHeight = 30;
     
-        var gridMap = [];              
+        var gridMap = [];    
+        let mapdata = [
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        ];          
     
         for (var c = 0; c < columnCount; c++) {
             gridMap[c] = [];
             for (var r = 0; r < rowCount; r++) {
-                gridMap[c][r] = {x: (c * cellWidth), y: (r * cellHeight), state: 0};            
+                gridMap[c][r] = {x: (c * cellWidth), y: (r * cellHeight), state: mapdata[r*rowCount+c]};            
             }
         }  
 
@@ -139,7 +161,7 @@ function main() {
                     ctx.beginPath();
                     ctx.rect(gridMap[c][r].x, gridMap[c][r].y, cellWidth, cellHeight);
                     if(gridMap[c][r].state == 1) {
-                        ctx.fillStyle = "#0095DD";
+                        ctx.fillStyle = "#dd0033";
                         ctx.fill();
                     } 
                     else if(gridMap[c][r].state == 0) {
@@ -164,6 +186,13 @@ function main() {
             ctx.arc(tank.muzzlePos.x, tank.muzzlePos.y, 5, 0, Math.PI * 2);
             ctx.fillStyle = "rgb(0, 149, 221)";
             ctx.fill();
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.arc(tank.x, tank.y, tank.w, 0, Math.PI*2);
+            ctx.strokeStyle = '#67dd00';
+            ctx.lineWidth = 0.3;
+            ctx.stroke();
             ctx.closePath();
         }
     
