@@ -115,13 +115,24 @@ function main() {
             let dy = tank.y + tank.forword.y * tank.moveSpeed;
 
             if(dx > playArea.minX && dx + tank.w < playArea.maxX
-            && dy > playArea.minY && dy + tank.h < playArea.maxY) {
+            && dy > playArea.minY && dy + tank.h < playArea.maxY
+            && collisionCheck(dx, dy)) {
                 tank.x = dx;
                 tank.y = dy;
 
                 tank.muzzlePos.x = (tank.x + tank.w / 2) + (tank.forword.x * tank.barrelLen);
                 tank.muzzlePos.y = (tank.y + tank.h / 2) + (tank.forword.y * tank.barrelLen);
-            }
+            }         
+            
+        }
+
+        function collisionCheck(dx, dy) {
+            let x = Number.parseInt(dx / tank.w);
+            let y = Number.parseInt(dy / tank.h);
+            let cell = mapdata[y * columnCount + x];
+            console.log(`${x}, ${y}`);
+            console.log(cell);
+            return (cell === 0)? true : false;
         }
 
         function areaCheck(x, y, w, h) {
