@@ -116,23 +116,34 @@ function main() {
 
             if(dx > playArea.minX && dx + tank.w < playArea.maxX
             && dy > playArea.minY && dy + tank.h < playArea.maxY
-            && collisionCheck(dx, dy)) {
+            && !collisionCheck(dx, dy)) {
                 tank.x = dx;
                 tank.y = dy;
-
-                tank.muzzlePos.x = (tank.x + tank.w / 2) + (tank.forword.x * tank.barrelLen);
-                tank.muzzlePos.y = (tank.y + tank.h / 2) + (tank.forword.y * tank.barrelLen);
-            }         
-            
+            }
+            tank.muzzlePos.x = (tank.x + tank.w / 2) + (tank.forword.x * tank.barrelLen);
+            tank.muzzlePos.y = (tank.y + tank.h / 2) + (tank.forword.y * tank.barrelLen);            
         }
 
-        function collisionCheck(dx, dy) {
-            let x = Number.parseInt(dx / tank.w);
-            let y = Number.parseInt(dy / tank.h);
-            let cell = mapdata[y * columnCount + x];
-            console.log(`${x}, ${y}`);
-            console.log(cell);
-            return (cell === 0)? true : false;
+        function collisionCheck(dx, dy) {            
+            //lt, 
+            //lb
+            //rt
+            //rb
+
+            let points = [
+                {x:Number.parseInt(dx/tank.w), y:Number.parseInt(dy/tank.h)},
+                {x:Number.parseInt(dx/tank.w), y:Number.parseInt((dy+tank.h)/tank.h)},
+                {x:Number.parseInt((dx+tank.w)/tank.w), y:Number.parseInt(dy/tank.h)},
+                {x:Number.parseInt((dx+tank.w)/tank.w), y:Number.parseInt((dy+tank.h)/tank.h)}            
+            ];
+
+            for(let point of points) {
+                if(mapdata[point.y * columnCount + point.x] === 1) {
+                    return true;
+                }                
+            }
+
+            return false;
         }
 
         function areaCheck(x, y, w, h) {
