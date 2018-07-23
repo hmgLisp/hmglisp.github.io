@@ -51,14 +51,7 @@ function main() {
             let x = Math.floor((e.clientX - canvas.offsetLeft) / cellWidth);
             let y = Math.floor((e.clientY - canvas.offsetTop) / cellHeight);
 
-            blocks.push(new cBlock(x * cellWidth, y * cellHeight,'brick'));
-            
-            // if(e.button == 0) {            
-            //     gridMap[x][y].state = 1;                
-            // }
-            // else if(e.button == 2) {
-            //     gridMap[x][y].state = 0;                
-            // }
+            blocks.push(new cBlock(x * cellWidth, y * cellHeight,'brick'));   
         }
 
         function fireTank() {             
