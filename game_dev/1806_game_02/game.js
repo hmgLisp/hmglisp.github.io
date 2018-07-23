@@ -40,37 +40,7 @@ function main() {
     
         var gridMap = [];    
         
-        let blocks = [];
-
-        let mapdata = [
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        ];          
-    
-        for (var c = 0; c < columnCount; c++) {
-            gridMap[c] = [];
-            for (var r = 0; r < rowCount; r++) {
-                gridMap[c][r] = {x: (c * cellWidth), y: (r * cellHeight), state: mapdata[r*rowCount+c]};            
-            }
-        }  
+        let blocks = [];        
 
         document.addEventListener("mousedown", mouseDownHandler, false);
         canvas.oncontextmenu = function() {
@@ -80,16 +50,15 @@ function main() {
         function mouseDownHandler(e) {
             let x = Math.floor((e.clientX - canvas.offsetLeft) / cellWidth);
             let y = Math.floor((e.clientY - canvas.offsetTop) / cellHeight);
-            console.log(x);
 
-            blocks.push(new cBlock(x,y,'brick'));
+            blocks.push(new cBlock(x * cellWidth, y * cellHeight,'brick'));
             
-            if(e.button == 0) {            
-                gridMap[x][y].state = 1;                
-            }
-            else if(e.button == 2) {
-                gridMap[x][y].state = 0;                
-            }
+            // if(e.button == 0) {            
+            //     gridMap[x][y].state = 1;                
+            // }
+            // else if(e.button == 2) {
+            //     gridMap[x][y].state = 0;                
+            // }
         }
 
         function fireTank() {             
@@ -140,13 +109,7 @@ function main() {
                 {x:Number.parseInt(dx/tank.w), y:Number.parseInt((dy+tank.h)/tank.h)},
                 {x:Number.parseInt((dx+tank.w)/tank.w), y:Number.parseInt(dy/tank.h)},
                 {x:Number.parseInt((dx+tank.w)/tank.w), y:Number.parseInt((dy+tank.h)/tank.h)}            
-            ];
-
-            for(let point of points) {
-                if(mapdata[point.y * columnCount + point.x] === 1) {
-                    return true;
-                }                
-            }
+            ];            
 
             return false;
         }
