@@ -32,3 +32,21 @@ class cTank {
         this.forword = vecForword;
     }    
 }
+
+class cBlock {
+    constructor (x, y, mat) {
+        this.x = x;
+        this.y = y;
+        this.w = 30;
+        this.h = 30;
+        this.mat = mat;
+    }
+
+    render (ctx) {
+        ctx.beginPath();
+        ctx.rect(this.x, this.y, this.w, this.h);
+        ctx.fillStyle = "#0095DD";
+        ctx.fill();
+        ctx.closePath();
+    }    
+}

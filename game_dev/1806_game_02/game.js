@@ -39,6 +39,9 @@ function main() {
         var cellHeight = 30;
     
         var gridMap = [];    
+        
+        let blocks = [];
+
         let mapdata = [
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
