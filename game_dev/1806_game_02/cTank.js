@@ -34,7 +34,7 @@ class cTank {
 }
 
 class cBlock {
-    constructor (x, y, mat) {
+    constructor(x, y, mat) {
         this.x = x;
         this.y = y;
         this.w = 30;
@@ -42,7 +42,7 @@ class cBlock {
         this.mat = mat;
     }
 
-    render (ctx) {
+    render(ctx) {
         ctx.beginPath();
         ctx.rect(this.x, this.y, this.w, this.h);
         ctx.fillStyle = "#0095DD";

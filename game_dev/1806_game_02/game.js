@@ -81,6 +81,8 @@ function main() {
             let x = Math.floor((e.clientX - canvas.offsetLeft) / cellWidth);
             let y = Math.floor((e.clientY - canvas.offsetTop) / cellHeight);
             console.log(x);
+
+            blocks.push(new cBlock(x,y,'brick'));
             
             if(e.button == 0) {            
                 gridMap[x][y].state = 1;                
@@ -226,6 +228,10 @@ function main() {
             drawgridMap();   
             drawTank();  
             drawHUD();
+
+            blocks.forEach(o => {
+                o.render(ctx);
+            });
             
             bullets.forEach(element => {
                 element.render(ctx);
