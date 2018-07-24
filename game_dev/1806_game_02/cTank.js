@@ -4,7 +4,7 @@ class Tank {
         this.w = 30;
         this.h = 30;  
         this.forword = {x: 0, y: -1};
-        this.moveSpeed = 2; 
+        this.moveSpeed = 1; 
         this.barrelLen = 30;          
     }
 
@@ -12,13 +12,13 @@ class Tank {
         return {x: this.position.x + this.w / 2, y: this.position.y + this.h / 2};
     }
 
-    get muzzlePos() {
-        return {x: (this.centerPos.x + this.forword.x) * this.barrelLen, y: (this.centerPos.y + this.forword.y) * this.barrelLen};
-    }
+    get muzzlePos() {        
+        return {x: this.centerPos.x + this.forword.x * this.barrelLen, y: this.centerPos.y + this.forword.y * this.barrelLen};
+    }   
 
     update() {
-        this.position.x = (this.position.x + this.forword.x) * this.moveSpeed;
-        this.position.y = (this.position.y + this.forword.y) * this.moveSpeed;        
+        this.position.x += (this.forword.x * this.moveSpeed);
+        this.position.y += (this.forword.y * this.moveSpeed);
     }
 
     render(ctx) {
@@ -29,15 +29,13 @@ class Tank {
         ctx.closePath();        
 
         ctx.beginPath();
+        ctx.lineWidth = 3;
         ctx.moveTo(this.centerPos.x, this.centerPos.y);
         ctx.lineTo(this.muzzlePos.x, this.muzzlePos.y);
+        ctx.strokeStyle = "red";
         ctx.stroke();
         ctx.closePath();
-    }
-    
-    cnangeForword(vecForword) {
-        this.forword = vecForword;
-    }    
+    } 
 }
 
 class Block {

@@ -1,8 +1,8 @@
 window.addEventListener("load", main, false);
 
 function main() {
-    let canvas = document.getElementById("my_game");
-    let ctx = canvas.getContext("2d");    
+    const canvas = document.getElementById("my_game");
+    const ctx = canvas.getContext("2d");    
     
     let inputKeys = [];
 
@@ -23,26 +23,20 @@ function main() {
     }      
 
     function run() {
-        let playArea = {minX: 0, minY: 0, maxX: canvas.clientWidth, maxY: canvas.clientHeight};
-        //let tank = {x:canvas.clientWidth/2, y:canvas.clientHeight/2, w:30, h:30, forword:{x:0, y:-1}, moveSpeed:2, barrelLen: 30, muzzlePos: {x:0, y:0}};            
-        let bullets = [];
-
-        let tank2 = new Tank(canvas.clientWidth / 2, canvas.clientHeight / 2);
-
+        const tank = new Tank(canvas.clientWidth / 2, canvas.clientHeight / 2);
         const timer = new cTimer();
 
-        let fireInterval = 800;
-        let ft = 0;
-
         //gridMap map
-        let rowCount = 20;
-        let columnCount = 20;
-        let cellWidth = 30;
-        let cellHeight = 30;        
+        const rowCount = 20;
+        const columnCount = 20;
+        const cellWidth = 30;
+        const cellHeight = 30;
         
-        let blocks = [];        
+        let blocks = [];
 
         document.addEventListener("mousedown", mouseDownHandler, false);
+
+        //마우스 우클릭 메뉴사용 안함
         canvas.oncontextmenu = function() {
             return false;
         }
@@ -52,36 +46,32 @@ function main() {
             let y = Math.floor((e.clientY - canvas.offsetTop) / cellHeight);
 
             blocks.push(new Block(x * cellWidth, y * cellHeight,'brick'));   
-        }
- 
-        function collisionCheck(dx, dy) {            
-            //lt, 
-            //lb
-            //rt
-            //rb
-
-            let points = [
-                {x:Number.parseInt(dx/tank.w), y:Number.parseInt(dy/tank.h)},
-                {x:Number.parseInt(dx/tank.w), y:Number.parseInt((dy+tank.h)/tank.h)},
-                {x:Number.parseInt((dx+tank.w)/tank.w), y:Number.parseInt(dy/tank.h)},
-                {x:Number.parseInt((dx+tank.w)/tank.w), y:Number.parseInt((dy+tank.h)/tank.h)}            
-            ];            
-
-            return false;
-        }
-
-        function areaCheck(x, y, w, h) {
-            if(playArea.minX > x - w) return true;
-            if(playArea.maxX < x + w) return true;
-            if(playArea.minY > y - h) return true;
-            if(playArea.maxY < y + h) return true;
-            
-            return false;
         }        
     
-        function update() {                
+        function update() {      
+            let tmpForword = tank.forword; 
+            if(inputKeys[37]) {
+                tmpForword = {x:-1, y: 0};
+                //inputKeys[37] = false;
+            }
+            if(inputKeys[38]) {
+                tmpForword = {x: 0, y:-1};
+                //inputKeys[38] = false;
+            }
+            if(inputKeys[39]) {
+                tmpForword = {x: 1, y: 0};
+                //inputKeys[39] = false;
+            }
+            if(inputKeys[40]) {
+                tmpForword = {x: 0, y: 1};
+                //inputKeys[40] = false;
+            }            
+
+            tank.forword = tmpForword;
+
+
             timer.update();            
-            tank2.update();                    
+            tank.update();                    
         }        
 
         function drawGrid() {
@@ -110,8 +100,8 @@ function main() {
             ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
             drawGrid();   
             drawBlock();           
-
-            tank2.render(ctx);            
+            
+            tank.render(ctx);
         }
         
         function gameLoop() {
