@@ -1,10 +1,10 @@
 window.addEventListener("load", main, false);
 
 function main() {
-    var canvas = document.getElementById("my_game");
-    var ctx = canvas.getContext("2d");    
+    let canvas = document.getElementById("my_game");
+    let ctx = canvas.getContext("2d");    
     
-    var inputKeys = [];
+    let inputKeys = [];
 
     document.addEventListener("keydown", keyDownHandler, false);    
     document.addEventListener("keyup", keyUpHandler, false);    
@@ -24,8 +24,10 @@ function main() {
 
     function run() {
         let playArea = {minX: 0, minY: 0, maxX: canvas.clientWidth, maxY: canvas.clientHeight};
-        let tank = {x:canvas.clientWidth/2, y:canvas.clientHeight/2, w:30, h:30, forword:{x:0, y:-1}, moveSpeed:2, barrelLen: 30, muzzlePos: {x:0, y:0}};                
+        //let tank = {x:canvas.clientWidth/2, y:canvas.clientHeight/2, w:30, h:30, forword:{x:0, y:-1}, moveSpeed:2, barrelLen: 30, muzzlePos: {x:0, y:0}};            
         let bullets = [];
+
+        let tank2 = new Tank(canvas.clientWidth / 2, canvas.clientHeight / 2);
 
         const timer = new cTimer();
 
@@ -33,12 +35,10 @@ function main() {
         let ft = 0;
 
         //gridMap map
-        var rowCount = 20;
-        var columnCount = 20;
-        var cellWidth = 30;
-        var cellHeight = 30;
-    
-        var gridMap = [];    
+        let rowCount = 20;
+        let columnCount = 20;
+        let cellWidth = 30;
+        let cellHeight = 30;        
         
         let blocks = [];        
 
@@ -51,46 +51,9 @@ function main() {
             let x = Math.floor((e.clientX - canvas.offsetLeft) / cellWidth);
             let y = Math.floor((e.clientY - canvas.offsetTop) / cellHeight);
 
-            blocks.push(new cBlock(x * cellWidth, y * cellHeight,'brick'));   
+            blocks.push(new Block(x * cellWidth, y * cellHeight,'brick'));   
         }
-
-        function fireTank() {             
-            ft += timer.deltaTime;
-            if(ft > fireInterval) {
-                bullets.push(new cBullet(tank.muzzlePos.x, tank.muzzlePos.y, tank.forword));
-                ft = 0;
-            }
-        }
-
-        function turnTank() {
-            if(inputKeys[37]) {
-                tank.forword = {x: -1, y: 0};
-            }
-            else if(inputKeys[38]) {
-                tank.forword = {x: 0, y: -1};
-            } 
-            else if(inputKeys[39]) {
-                tank.forword = {x: 1, y: 0};
-            }
-            else if(inputKeys[40]) {
-                tank.forword = {x: 0, y: 1};
-            }
-        }
-        
-        function moveTank() {          
-            let dx = tank.x + tank.forword.x * tank.moveSpeed;
-            let dy = tank.y + tank.forword.y * tank.moveSpeed;
-
-            if(dx > playArea.minX && dx + tank.w < playArea.maxX
-            && dy > playArea.minY && dy + tank.h < playArea.maxY
-            && !collisionCheck(dx, dy)) {
-                tank.x = dx;
-                tank.y = dy;
-            }
-            tank.muzzlePos.x = (tank.x + tank.w / 2) + (tank.forword.x * tank.barrelLen);
-            tank.muzzlePos.y = (tank.y + tank.h / 2) + (tank.forword.y * tank.barrelLen);            
-        }
-
+ 
         function collisionCheck(dx, dy) {            
             //lt, 
             //lb
@@ -116,82 +79,39 @@ function main() {
             return false;
         }        
     
-        function update() {    
-            turnTank();
-            moveTank();
-            timer.update();
-            fireTank();
+        function update() {                
+            timer.update();            
+            tank2.update();                    
+        }        
 
-            bullets.forEach(bullet => {
-                let dx = bullet.deltaX;
-                let dy = bullet.deltaY;
-                if(areaCheck(dx, dy, bullet.r, bullet.r)) {
-                    bullet.show = false;
-                }
-                bullet.update();
-            });           
-        }
+        function drawGrid() {
+            for(let r = 0; r < rowCount; r++) {
+                for(let c = 0; c <columnCount; c++) {
+                    let x = c * cellWidth;
+                    let y = r * cellHeight;
 
-        function drawHUD() {
-            //ctx.font = "16px Arial";
-            //ctx.fillStyle = "#0095DD";
-            //ctx.fillText(timer.fps, 8, 20);
-        }
-
-        function drawgridMap() {        
-            for (let c = 0; c < columnCount; c++) {
-                for (let r = 0; r < rowCount; r++) {
                     ctx.beginPath();
-                    ctx.rect(gridMap[c][r].x, gridMap[c][r].y, cellWidth, cellHeight);
-                    if(gridMap[c][r].state == 1) {
-                        ctx.fillStyle = "#dd0033";
-                        ctx.fill();
-                    } 
-                    else if(gridMap[c][r].state == 0) {
-                        ctx.strokeStyle = "gray";
-                        ctx.lineWidth = 0.3;
-                        ctx.stroke();
-                    }
-                    ctx.closePath();            
+                    ctx.rect(x, y, cellWidth, cellHeight);            
+                    ctx.lineWidth = 0.1;
+                    ctx.strokeStyle = "gray";
+                    ctx.stroke();            
+                    ctx.closePath();                    
                 }
-            }                
+            }                                
         }
-
-        function drawTank() {            
-            ctx.beginPath();
-            ctx.rect(tank.x, tank.y, tank.w, tank.h);
-            ctx.fillStyle = "rgb(0, 149, 221)";
-            ctx.fill();
-            ctx.closePath();
-
-            //draw muzzle
-            ctx.beginPath();
-            ctx.arc(tank.muzzlePos.x, tank.muzzlePos.y, 5, 0, Math.PI * 2);
-            ctx.fillStyle = "rgb(0, 149, 221)";
-            ctx.fill();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.arc(tank.x, tank.y, tank.w, 0, Math.PI*2);
-            ctx.strokeStyle = '#67dd00';
-            ctx.lineWidth = 0.3;
-            ctx.stroke();
-            ctx.closePath();
+       
+        function drawBlock() {
+            blocks.forEach(o => {
+                o.render(ctx);
+            });
         }
     
         function render() {
             ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-            drawgridMap();   
-            drawTank();  
-            drawHUD();
+            drawGrid();   
+            drawBlock();           
 
-            blocks.forEach(o => {
-                o.render(ctx);
-            });
-            
-            bullets.forEach(element => {
-                element.render(ctx);
-            });
+            tank2.render(ctx);            
         }
         
         function gameLoop() {
