@@ -74,11 +74,23 @@ class Bullet {
         this.r = r;
         this.forword = dir;
         this.moveSpeed = 3;
+        this.show = true;
     }    
 
     update() {
-        this.x += this.forword.x * this.moveSpeed;
-        this.y += this.forword.y * this.moveSpeed;
+        let dx = this.x;
+        let dy = this.y;
+        dx += this.forword.x * this.moveSpeed;
+        dy += this.forword.y * this.moveSpeed;
+
+        // if (dx < 0 - this.r || dy < 0 - this.r ||
+        //     dx > canvas.clientWidth + this.r ||
+        //     dy > canvas.clientHeight + this.r) {
+        //         this.show = false;
+        //     }
+        
+        this.x = dx;
+        this.y = dy;
     }
 
     render(ctx) {

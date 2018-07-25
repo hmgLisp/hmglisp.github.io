@@ -56,9 +56,19 @@ function main() {
         }      
         
         function updateBullets() {
-            bullets.forEach(bullet => {
-                bullet.update();
+            bullets.forEach(bullet => {                
+                if (bullet.x < 0 - bullet.r || 
+                    bullet.y < 0 - bullet.r ||
+                    bullet.x > canvas.clientWidth + bullet.r ||
+                    bullet.y > canvas.clientHeight + bullet.r) {
+                    bullet.show = false;                    
+                }
+                else {
+                    bullet.update();
+                }
             });
+
+
         }
 
         function rotateTank() {
