@@ -1,4 +1,4 @@
-class cTimer {
+class Timer {
     constructor() {
         this.lastTime;
         this.time = 0;        

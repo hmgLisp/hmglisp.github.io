@@ -24,15 +24,22 @@ function main() {
 
     function run() {
         const tank = new Tank(canvas.clientWidth / 2, canvas.clientHeight / 2);
-        const timer = new cTimer();
+        const timer = new Timer();
 
-        //gridMap map
+        //grid
         const rowCount = 20;
         const columnCount = 20;
         const cellWidth = 30;
         const cellHeight = 30;
+        const gridColor = "white";
+        const gridLineWidth = 0.3;
         
         let blocks = [];
+
+        //bullet
+        let bullets = [];
+        let fireInterval = 1000;
+        let deltaT = 0;
 
         document.addEventListener("mousedown", mouseDownHandler, false);
 
@@ -46,9 +53,15 @@ function main() {
             let y = Math.floor((e.clientY - canvas.offsetTop) / cellHeight);
 
             blocks.push(new Block(x * cellWidth, y * cellHeight,'brick'));   
-        }        
-    
-        function update() {      
+        }      
+        
+        function updateBullets() {
+            bullets.forEach(bullet => {
+                bullet.update();
+            });
+        }
+
+        function rotateTank() {
             let tmpForword = tank.forword; 
             if(inputKeys[37]) {
                 tmpForword = {x:-1, y: 0};
@@ -65,14 +78,35 @@ function main() {
             if(inputKeys[40]) {
                 tmpForword = {x: 0, y: 1};
                 //inputKeys[40] = false;
-            }            
+            }       
+            
+            tank.forword = tmpForword;           
+        }
 
-            tank.forword = tmpForword;
-
-
-            timer.update();            
+        function fireTank() {
+            deltaT += timer.deltaTime;
+            if(inputKeys[32] && deltaT > fireInterval) {
+                bullets.push(new Bullet(tank.muzzlePos.x, tank.muzzlePos.y, 5, tank.forword));
+                deltaT = 0;
+            }
+        }
+    
+        function update() {      
+            timer.update();    
+            
+            rotateTank();        
             tank.update();                    
+
+            fireTank();
+            updateBullets();
         }        
+
+        function drawBullets() {
+            bullets.forEach(bullet => {
+                bullet.render(ctx);
+            });
+        }
+        
 
         function drawGrid() {
             for(let r = 0; r < rowCount; r++) {
@@ -82,8 +116,8 @@ function main() {
 
                     ctx.beginPath();
                     ctx.rect(x, y, cellWidth, cellHeight);            
-                    ctx.lineWidth = 0.1;
-                    ctx.strokeStyle = "gray";
+                    ctx.lineWidth = gridLineWidth;
+                    ctx.strokeStyle = gridColor;
                     ctx.stroke();            
                     ctx.closePath();                    
                 }
@@ -101,6 +135,7 @@ function main() {
             drawGrid();   
             drawBlock();           
             
+            drawBullets();
             tank.render(ctx);
         }
         

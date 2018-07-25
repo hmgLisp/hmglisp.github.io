@@ -55,3 +55,26 @@ class Block {
         ctx.closePath();
     }    
 }
+
+class Bullet {
+    constructor(x, y, r, dir) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.forword = dir;
+        this.moveSpeed = 3;
+    }    
+
+    update() {
+        this.x += this.forword.x * this.moveSpeed;
+        this.y += this.forword.y * this.moveSpeed;
+    }
+
+    render(ctx) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
+        ctx.fillStyle = "yellow";
+        ctx.fill();
+        ctx.closePath();
+    }
+}
