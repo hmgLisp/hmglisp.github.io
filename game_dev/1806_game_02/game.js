@@ -95,7 +95,7 @@ function main() {
             timer.update();    
             
             rotateTank();        
-            tank.update();                    
+            tank.update(canvas);                    
 
             fireTank();
             updateBullets();

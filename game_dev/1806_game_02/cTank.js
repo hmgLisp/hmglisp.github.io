@@ -16,9 +16,20 @@ class Tank {
         return {x: this.centerPos.x + this.forword.x * this.barrelLen, y: this.centerPos.y + this.forword.y * this.barrelLen};
     }   
 
-    update() {
-        this.position.x += (this.forword.x * this.moveSpeed);
-        this.position.y += (this.forword.y * this.moveSpeed);
+    update(canvas) {
+        let dx = this.position.x;
+        let dy = this.position.y;
+
+        dx += (this.forword.x * this.moveSpeed);
+        dy += (this.forword.y * this.moveSpeed);
+
+        if (dx < 0) dx = 0;
+        if (dy < 0) dy = 0;
+        if (dx > canvas.clientWidth - this.w) dx = canvas.clientWidth - this.w;
+        if (dy > canvas.clientHeight - this.h) dy = canvas.clientHeight - this.h;
+
+        this.position.x = dx;
+        this.position.y = dy;
     }
 
     render(ctx) {
