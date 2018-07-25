@@ -38,7 +38,7 @@ function main() {
 
         //bullet
         let bullets = [];
-        let fireInterval = 1000;
+        const fireInterval = 1000;
         let deltaT = 0;
 
         document.addEventListener("mousedown", mouseDownHandler, false);
