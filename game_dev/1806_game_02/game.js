@@ -41,6 +41,8 @@ function main() {
         const fireInterval = 1000;
         let deltaT = 0;
 
+        let effects = [];
+
         document.addEventListener("mousedown", mouseDownHandler, false);
 
         //마우스 우클릭 메뉴사용 안함
@@ -61,14 +63,19 @@ function main() {
                     bullet.y < 0 - bullet.r ||
                     bullet.x > canvas.clientWidth + bullet.r ||
                     bullet.y > canvas.clientHeight + bullet.r) {
-                    bullet.show = false;                    
+                    bullet.show = false;   
+                    effects.push(new effectOfExplosion(bullet.x, bullet.y));                 
                 }
                 else {
                     bullet.update();
                 }
             });
+        }
 
-
+        function updateEffect() {
+            effects.forEach(effect => {
+                effect.update();                
+            });
         }
 
         function rotateTank() {
@@ -109,11 +116,18 @@ function main() {
 
             fireTank();
             updateBullets();
+            updateEffect();
         }        
 
         function drawBullets() {
             bullets.forEach(bullet => {
                 bullet.render(ctx);
+            });
+        }
+
+        function drawEffect() {
+            effects.forEach(effect => {
+                effect.render(ctx);
             });
         }
         
@@ -146,6 +160,7 @@ function main() {
             drawBlock();           
             
             drawBullets();
+            drawEffect();
             tank.render(ctx);
         }
         

@@ -101,3 +101,26 @@ class Bullet {
         ctx.closePath();
     }
 }
+
+class effectOfExplosion {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.r = 1;
+        this.time = 1000;
+    }
+
+    update() {
+        this.r += 1;
+    }
+
+    render(ctx) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
+        ctx.fillStyle = "yellow";
+        ctx.fill();
+        ctx.strokeStyle = "red";
+        ctx.stroke();
+        ctx.closePath();
+    }
+}
