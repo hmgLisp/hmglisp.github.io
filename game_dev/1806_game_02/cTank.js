@@ -107,11 +107,13 @@ class effectOfExplosion {
         this.x = x;
         this.y = y;
         this.r = 1;
-        this.time = 1000;
+        this.time = 200;       
+        this.deltaT = 0;
+        this.show = true;
     }
 
     update() {
-        this.r += 1;
+        this.r += 5;
     }
 
     render(ctx) {
@@ -119,8 +121,8 @@ class effectOfExplosion {
         ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
         ctx.fillStyle = "yellow";
         ctx.fill();
-        ctx.strokeStyle = "red";
-        ctx.stroke();
+        // ctx.strokeStyle = "red";
+        // ctx.stroke();
         ctx.closePath();
     }
 }

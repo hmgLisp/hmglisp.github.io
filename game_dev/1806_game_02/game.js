@@ -70,11 +70,18 @@ function main() {
                     bullet.update();
                 }
             });
+            bullets = bullets.filter(x => x.show === true);
         }
 
         function updateEffect() {
             effects.forEach(effect => {
-                effect.update();                
+                effect.deltaT += timer.deltaTime;                
+                if(effect.deltaT > effect.time) {
+                    effect.show = false;
+                }
+                else {
+                    effect.update();                
+                }                
             });
         }
 
@@ -127,7 +134,7 @@ function main() {
 
         function drawEffect() {
             effects.forEach(effect => {
-                effect.render(ctx);
+                if(effect.show) effect.render(ctx);
             });
         }
         
