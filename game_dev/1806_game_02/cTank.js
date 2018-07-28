@@ -100,29 +100,8 @@ class Bullet {
         ctx.fill();
         ctx.closePath();
     }
-}
 
-class effectOfExplosion {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.r = 1;
-        this.time = 200;       
-        this.deltaT = 0;
-        this.show = true;
-    }
-
-    update() {
-        this.r += 5;
-    }
-
-    render(ctx) {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
-        ctx.fillStyle = "yellow";
-        ctx.fill();
-        // ctx.strokeStyle = "red";
-        // ctx.stroke();
-        ctx.closePath();
+    explosion() {
+        effectMag.add(new EffectOfExplosion(this.x, this.y, 50));
     }
 }

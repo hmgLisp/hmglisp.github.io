@@ -1,3 +1,15 @@
+class TimeMag {
+    constructor() {
+        this.timers = [];
+    }
+
+    update() {
+
+    }
+}
+
+var timeMag = new TimeMag();
+
 class Timer {
     constructor() {
         this.lastTime;
@@ -25,3 +37,4 @@ class Timer {
         // this.frame++;
     }
 }
+
