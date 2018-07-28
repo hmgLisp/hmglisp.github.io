@@ -38,4 +38,4 @@ class Timer {
     }
 }
 
-const timer = new Timer();
+const TIMER = new Timer();

@@ -89,7 +89,7 @@ function run() {
     }
 
     function fireTank() {
-        deltaT += timer.deltaTime;
+        deltaT += TIMER.deltaTime;
         if(inputKeys[32] && deltaT > fireInterval) {
             bullets.push(new Bullet(tank.muzzlePos.x, tank.muzzlePos.y, 5, tank.forword));
             deltaT = 0;
@@ -97,7 +97,7 @@ function run() {
     }
 
     function update() {      
-        timer.update();    
+        TIMER.update();    
         
         rotateTank();        
         tank.update(canvas);                    

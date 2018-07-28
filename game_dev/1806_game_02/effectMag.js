@@ -37,7 +37,7 @@ class EffectOfExplosion {
     }
 
     update() {
-        this.dt += timer.deltaTime;    
+        this.dt += TIMER.deltaTime;    
         
         if(this.dt > this.aniTime) {
             this.show = false;
