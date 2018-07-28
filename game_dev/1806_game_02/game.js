@@ -2,6 +2,14 @@ window.addEventListener("load", run, false);
 
 let inputKeys = [];
 let GAME_AREA = {X:0, Y:0, W:0, H:0};
+let BLOCKS = [];
+//grid
+const rowCount = 20;
+const columnCount = 20;
+const cellWidth = 30;
+const cellHeight = 30;
+const gridColor = "white";
+const gridLineWidth = 0.3;
 
 document.addEventListener("keydown", keyDownHandler, false);    
 document.addEventListener("keyup", keyUpHandler, false);    
@@ -28,16 +36,8 @@ function run() {
     GAME_AREA.H = canvas.clientHeight;
 
     const tank = new Tank(canvas.clientWidth / 2, canvas.clientHeight / 2);
-
-    //grid
-    const rowCount = 20;
-    const columnCount = 20;
-    const cellWidth = 30;
-    const cellHeight = 30;
-    const gridColor = "white";
-    const gridLineWidth = 0.3;
     
-    let blocks = [];
+    
 
     //bullet
     let bullets = [];
@@ -55,7 +55,7 @@ function run() {
         let x = Math.floor((e.clientX - canvas.offsetLeft) / cellWidth);
         let y = Math.floor((e.clientY - canvas.offsetTop) / cellHeight);
 
-        blocks.push(new Block(x * cellWidth, y * cellHeight,'brick'));   
+        BLOCKS.push(new Block(x * cellWidth, y * cellHeight,'brick'));   
     }      
     
     function updateBullets() {
@@ -132,7 +132,7 @@ function run() {
     }
     
     function drawBlock() {
-        blocks.forEach(o => {
+        BLOCKS.forEach(o => {
             o.render(ctx);
         });
     }

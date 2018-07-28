@@ -56,12 +56,16 @@ class Block {
         this.w = 30;
         this.h = 30;
         this.mat = mat;
+        this.show = true;             
     }
 
     render(ctx) {
         ctx.beginPath();
         ctx.rect(this.x, this.y, this.w, this.h);
-        ctx.fillStyle = "#dd3a00";
+        let r = Math.random() * 255 + 1;
+        let g = Math.random() * 255 + 1;
+        let b = Math.random() * 255 + 1;
+        ctx.fillStyle = `rgb(${r},${g},${b})`;//#dd3a00";
         ctx.fill();
         ctx.closePath();
     }    
