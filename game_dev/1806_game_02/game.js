@@ -1,6 +1,7 @@
 window.addEventListener("load", run, false);
 
 let inputKeys = [];
+let GAME_AREA = {X:0, Y:0, W:0, H:0};
 
 document.addEventListener("keydown", keyDownHandler, false);    
 document.addEventListener("keyup", keyUpHandler, false);    
@@ -21,9 +22,12 @@ function keyUpHandler(e) {
 function run() {
     const canvas = document.getElementById("my_game");
     const ctx = canvas.getContext("2d"); 
+    GAME_AREA.X = canvas.clientX;
+    GAME_AREA.Y = canvas.clientY;
+    GAME_AREA.W = canvas.clientWidth;
+    GAME_AREA.H = canvas.clientHeight;
 
     const tank = new Tank(canvas.clientWidth / 2, canvas.clientHeight / 2);
-    const timer = new Timer();
 
     //grid
     const rowCount = 20;
@@ -38,7 +42,7 @@ function run() {
     //bullet
     let bullets = [];
     const fireInterval = 1000;
-    let deltaT = 0;
+    let deltaT = 1000;
 
     document.addEventListener("mousedown", mouseDownHandler, false);
 
@@ -55,15 +59,8 @@ function run() {
     }      
     
     function updateBullets() {
-        bullets.forEach(bullet => {                
-            if (bullet.x < 0 - bullet.r || 
-                bullet.y < 0 - bullet.r ||
-                bullet.x > canvas.clientWidth + bullet.r ||
-                bullet.y > canvas.clientHeight + bullet.r) {
-                bullet.show = false;
-                bullet.explosion();
-            }
-            else {
+        bullets.forEach(bullet => {    
+            if(bullet.show) {
                 bullet.update();
             }
         });        
@@ -107,12 +104,14 @@ function run() {
 
         fireTank();
         updateBullets();
-        effectMag.update();        
+        EFFECT_MAG.update();        
     }        
 
     function drawBullets() {
         bullets.forEach(bullet => {
-            bullet.render(ctx);
+            if(bullet.show) {
+                bullet.render(ctx);
+            }
         });
     }
 
@@ -145,7 +144,7 @@ function run() {
         
         drawBullets();
         
-        effectMag.render(ctx);
+        EFFECT_MAG.render(ctx);
 
         tank.render(ctx);
     }

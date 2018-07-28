@@ -8,7 +8,7 @@ class TimeMag {
     }
 }
 
-var timeMag = new TimeMag();
+const timeMag = new TimeMag();
 
 class Timer {
     constructor() {
@@ -34,7 +34,8 @@ class Timer {
         //     this.fps = this.frame;
         //     this.frame = 0;
         // }
-        // this.frame++;
+        // this.frame++;        
     }
 }
 
+const timer = new Timer();

@@ -83,14 +83,14 @@ class Bullet {
         dx += this.forword.x * this.moveSpeed;
         dy += this.forword.y * this.moveSpeed;
 
-        // if (dx < 0 - this.r || dy < 0 - this.r ||
-        //     dx > canvas.clientWidth + this.r ||
-        //     dy > canvas.clientHeight + this.r) {
-        //         this.show = false;
-        //     }
-        
-        this.x = dx;
-        this.y = dy;
+        if (dx < 0 - this.r || dy < 0 - this.r || dx > GAME_AREA.W + this.r || dy > GAME_AREA.H + this.r) {
+            this.explosion();
+            this.show = false;
+        }
+        else {
+            this.x = dx;
+            this.y = dy;
+        }        
     }
 
     render(ctx) {
@@ -102,6 +102,6 @@ class Bullet {
     }
 
     explosion() {
-        effectMag.add(new EffectOfExplosion(this.x, this.y, 50));
+        EFFECT_MAG.add(new EffectOfExplosion(this.x, this.y, 50));
     }
 }
