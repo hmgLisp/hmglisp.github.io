@@ -11,8 +11,8 @@ const cellHeight = 30;
 const gridColor = "white";
 const gridLineWidth = 0.3;
 
-document.addEventListener("keydown", keyDownHandler, false);    
-document.addEventListener("keyup", keyUpHandler, false);    
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
 
 // 32: space
 // 37: arrow left
@@ -55,7 +55,7 @@ function run() {
         let x = Math.floor((e.clientX - canvas.offsetLeft) / cellWidth);
         let y = Math.floor((e.clientY - canvas.offsetTop) / cellHeight);
 
-        BLOCKS.push(new Block(x * cellWidth, y * cellHeight,'brick'));   
+        BLOCKS.push(new Block(x * cellWidth, y * cellHeight,'brick'));
     }      
     
     function updateBullets() {
@@ -96,6 +96,10 @@ function run() {
         }
     }
 
+    function collicionCheck() {
+
+    }
+
     function update() {      
         TIMER.update();    
         
@@ -104,7 +108,22 @@ function run() {
 
         fireTank();
         updateBullets();
+        for(let i = 0; i < bullets.length; i++) {
+            if(bullets[i].show){                
+                for(let j = 0; j < BLOCKS.length; j++) {
+                    if(BLOCKS[j].show) {
+                        if(bullets[i].collisionCheck(BLOCKS[j])) {
+                            BLOCKS[j].show = false;
+                            break;
+                        }                    
+                    }
+                }
+            }
+        }
+
+
         EFFECT_MAG.update();        
+
     }        
 
     function drawBullets() {
@@ -133,7 +152,9 @@ function run() {
     
     function drawBlock() {
         BLOCKS.forEach(o => {
-            o.render(ctx);
+            if(o.show) {
+                o.render(ctx);
+            }
         });
     }
 

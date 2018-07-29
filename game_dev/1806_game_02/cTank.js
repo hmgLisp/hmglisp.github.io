@@ -108,4 +108,15 @@ class Bullet {
     explosion() {
         EFFECT_MAG.add(new EffectOfExplosion(this.x, this.y, 50));
     }
+
+    collisionCheck(gameObj) {        
+        if(this.x < gameObj.x - this.r) return false;
+        if(this.y < gameObj.y - this.r) return false;
+        if(this.x > gameObj.x + gameObj.w + this.r) return false;
+        if(this.y > gameObj.y + gameObj.h + this.r) return false;
+        
+        this.show = false;
+        this.explosion();
+        return true;
+    }
 }
