@@ -1,16 +1,22 @@
-window.addEventListener('load', run, false);
+window.addEventListener('load', game_run, false);
 
-var canvas;
-var ctx;
+var game_canvas;
+var game_ctx;
 
-function run() {
+var canvas_rect;
+var canvas_background_color;
+
+function game_run() {
     game_init();
     game_loop();
 }
 
 function game_init() {
-    canvas = document.getElementById("game");
-    ctx = canvas.getContext('2d');
+    game_canvas = document.getElementById("game");
+    game_ctx = game_canvas.getContext('2d');
+    
+    canvas_rect = {x:game_canvas.clientLeft, y: game_canvas.clientTop, w: game_canvas.clientWidth, h: game_canvas.clientHeight};
+    init();
 }
 
 function game_loop() {
@@ -19,15 +25,17 @@ function game_loop() {
     requestAnimationFrame(game_loop);
 }
 
-function update() {
+function render() {
+    game_ctx.clearRect(canvas_rect.x, canvas_rect.y, canvas_rect.w, canvas_rect.h);    
+    game_ctx.beginPath();
+    game_ctx.rect(canvas_rect.x, canvas_rect.y, canvas_rect.w, canvas_rect.h);
+    game_ctx.fillStyle = canvas_background_color;
+    game_ctx.fill();
+    game_ctx.closePath();
 
+    
 }
 
-function render() {
-    ctx.clearRect(canvas.clientLeft, canvas.clientTop, canvas.clientWidth, canvas.clientHeight);    
-    ctx.beginPath();
-    ctx.rect(0, 0, canvas.clientWidth, canvas.clientHeight);
-    ctx.fillStyle = "gray";
-    ctx.fill();
-    ctx.closePath();
+function set_background(color) {
+    canvas_background_color = color;
 }
