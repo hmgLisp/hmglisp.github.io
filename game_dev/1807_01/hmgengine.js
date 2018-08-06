@@ -6,6 +6,8 @@ var game_ctx;
 var canvas_rect;
 var canvas_background_color;
 
+var game_objs = [];
+
 function game_run() {
     game_init();
     game_loop();
@@ -27,13 +29,7 @@ function game_loop() {
 
 function render() {
     game_ctx.clearRect(canvas_rect.x, canvas_rect.y, canvas_rect.w, canvas_rect.h);    
-    game_ctx.beginPath();
-    game_ctx.rect(canvas_rect.x, canvas_rect.y, canvas_rect.w, canvas_rect.h);
-    game_ctx.fillStyle = canvas_background_color;
-    game_ctx.fill();
-    game_ctx.closePath();
-
-    
+    draw_game_objs();
 }
 
 function set_background(color) {
@@ -41,7 +37,25 @@ function set_background(color) {
 }
 
 class game_obj {
-    constructor() {
-        
+    constructor(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        game_objs.push(this);
     }
+
+    update() {
+
+    }
+
+    render(ctx) {
+
+    }
+}
+
+function draw_game_objs() {
+    game_objs.forEach(element => {
+        element.render(game_ctx);
+    });
 }
