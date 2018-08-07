@@ -1,6 +1,5 @@
 window.addEventListener('load', game_run, false);
-window.addEventListener('keydown', key_down_event_handler, false);
-window.addEventListener('keyup', key_up_event_handler, false);
+
 
 var game_canvas;
 var game_ctx;
@@ -9,8 +8,6 @@ var canvas_rect;
 var canvas_background_color;
 
 var game_objs = [];
-
-var input_manager = new Input_manager();
 
 function game_run() {
     game_init();
@@ -33,6 +30,11 @@ function game_loop() {
 
 function render() {
     game_ctx.clearRect(canvas_rect.x, canvas_rect.y, canvas_rect.w, canvas_rect.h);    
+    game_ctx.beginPath();
+    game_ctx.rect(canvas_rect.x, canvas_rect.y, canvas_rect.w, canvas_rect.h);
+    game_ctx.fillStyle = canvas_background_color;
+    game_ctx.fill();
+    game_ctx.closePath();
     draw_game_objs();
 }
 
@@ -58,34 +60,39 @@ class game_obj {
     }
 }
 
-class Input_manager {
-    constructor() {
-        this.keys = [];
-    }
-
-    get is_down_key(key) {
-        return this.keys[key];
-    }
-
-    set down_key(key) {
-        this.keys[key] = true;
-    }
-
-    set up_key(key) {
-        this.keys[key] = false;
-    }
-}
-
 function draw_game_objs() {
     game_objs.forEach(element => {
         element.render(game_ctx);
     });
 }
 
+window.addEventListener('keydown', key_down_event_handler, false);
+window.addEventListener('keyup', key_up_event_handler, false);
+
+class Input_manager {
+    constructor() {
+        this.keys = [];
+    }
+
+    is_down_key(key) {
+        return this.keys[key];
+    }
+
+    down_key(key) {
+        this.keys[key] = true;
+    }
+
+    up_key(key) {
+        this.keys[key] = false;
+    }
+}
+
+var input_manager = new Input_manager();
+
 function key_down_event_handler(e) {
     input_manager.down_key(e.keyCode);
 }
 
 function key_up_event_handler(e) {
-    input_manager.down_key(e.keyCode);
+    input_manager.up_key(e.keyCode);
 }
