@@ -1,11 +1,11 @@
 window.addEventListener('load', game_run, false);
 
-
 var game_canvas;
 var game_ctx;
 
 var canvas_rect;
 var canvas_background_color;
+var game_grid;
 
 var game_objs = [];
 
@@ -19,6 +19,7 @@ function game_init() {
     game_ctx = game_canvas.getContext('2d');
     
     canvas_rect = {x:game_canvas.clientLeft, y: game_canvas.clientTop, w: game_canvas.clientWidth, h: game_canvas.clientHeight};
+    
     init();
 }
 
@@ -42,7 +43,7 @@ function set_background(color) {
     canvas_background_color = color;
 }
 
-class game_obj {
+class Game_obj {
     constructor(x, y, w, h) {
         this.x = x;
         this.y = y;
@@ -95,4 +96,24 @@ function key_down_event_handler(e) {
 
 function key_up_event_handler(e) {
     input_manager.up_key(e.keyCode);
+}
+
+class Vector {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    get length() {
+        return Math.sqrt(this.x * this.x + this.y * this.y);
+    }
+
+    get get_normal() {
+        return new Vector(this.x / this.length, this.y / this.length);
+    }
+
+    normalaze() {
+        this.x = this.x / this.length;
+        this.y = this.y / this.length;
+    }
 }
