@@ -98,3 +98,22 @@ function key_up_event_handler(e) {
     input_manager.up_key(e.keyCode);
 }
 
+class Vector {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    get length() {
+        return Math.sqrt(this.x * this.x + this.y * this.y);
+    }
+
+    get get_normal() {
+        return new Vector(this.x / this.length, this.y / this.length);
+    }
+
+    normalaze() {
+        this.x = this.x / this.length;
+        this.y = this.y / this.length;
+    }
+}
