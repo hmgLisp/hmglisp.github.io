@@ -92,15 +92,58 @@ class Potal extends Game_obj {
         super(x, y, w, h);
         this.target = null;
         this.forword = new Vector(0, 0);
+
+        this.muzzle = {
+            x: x, y: y, r: w, len: 40,                     
+        };        
+
+        this.bullets = [];
+        this.delay_time = 1;
     }
 
     set_target(obj) {
         this.target = obj;        
     }
 
+    update_muzzle_pos() {
+        this.muzzle.x = this.x + this.forword.get_normal.x * this.muzzle.len;
+        this.muzzle.y = this.y + this.forword.get_normal.y * this.muzzle.len;
+    }
+
+    draw_muzzle(ctx) {
+        ctx.beginPath();
+        ctx.arc(
+            this.muzzle.x, this.muzzle.y,
+            5, 0, Math.PI * 2, false);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "red";
+        ctx.stroke();
+        ctx.closePath();
+    }
+
     update() {
         this.forword.x = this.target.x - this.x;
-        this.forword.y = this.target.y - this.y;        
+        this.forword.y = this.target.y - this.y;   
+        
+        this.update_muzzle_pos();
+
+        if(input_manager.is_down_key(32)) {
+            this.bullets.push(new Bullet(this.muzzle.x, this.muzzle.y, this.forword));
+        }
+
+        this.update_bullets();
+    }
+
+    update_bullets() {
+        this.bullets.forEach(element => {
+            element.update();
+        });
+    }
+
+    draw_bullets(ctx) {
+        this.bullets.forEach(element => {
+            element.render(ctx);
+        });
     }
 
     render(ctx) {
@@ -120,14 +163,44 @@ class Potal extends Game_obj {
         ctx.stroke();
         ctx.closePath();
 
+        this.draw_muzzle(ctx);
+
+        if(this.bullets.len > 0) {
+            this.draw_bullets(ctx);
+        }
+    }
+}
+
+class Bullet extends Game_obj{
+    constructor(x, y, forword) {
+        super(x, y, 5, 5);
+        this.forword = forword;
+        this.speed = 5;
+        this.show = true;
+    }
+
+    get radius() {
+        return this.w;
+    }
+
+    update() {
+        let dx = this.x;
+        let dy = this.y;
+        dx += this.forword.get_normal.x * this.speed;
+        dy += this.forword.get_normal.y * this.speed;
+
+        if(dx > grid.x && dx < grid.x + grid.w && dy > grid.y && dy < grid.y + grid.h) {
+            this.x = dx;
+            this.y = dy;
+            console.log("jflsf");
+        }
+    }
+
+    render(ctx) {
         ctx.beginPath();
-        ctx.arc(
-            this.x + this.forword.get_normal.x * len,
-            this.y + this.forword.get_normal.y * len,
-            5, 0, Math.PI * 2, false);
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = "red";
-        ctx.stroke();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+        ctx.fillStyle = "red";
+        ctx.fill();
         ctx.closePath();
     }
 }

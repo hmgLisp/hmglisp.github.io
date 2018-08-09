@@ -24,6 +24,7 @@ function game_init() {
 }
 
 function game_loop() {
+    timer.update();
     update();
     render();
     requestAnimationFrame(game_loop);
@@ -117,3 +118,32 @@ class Vector {
         this.y = this.y / this.length;
     }
 }
+
+class Timer {
+    constructor(requst_time, repeat) {
+        this.prev_t;
+        this.delta_t;
+        this.requst_t = requst_time;
+        this.alarm = false;
+        this.repeat = repeat;
+        this.tmp_time = 0;
+    }
+
+    get time_check() {
+        return this.alarm;
+    }
+
+    update() {
+        let time = Date.now();
+        this.delta_t = time - this.prev_t;
+        this.prev_t = time;        
+        this.tmp_time += this.delta_t;
+
+        if(this.tmp_time >= this.requst_t) {
+            this.alarm = true;
+            this.tmp_time = 0;
+        }
+    }    
+}
+
+var timer = new Timer();
