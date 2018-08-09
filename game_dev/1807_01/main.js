@@ -14,10 +14,11 @@ function init() {
 function update() {
     potal.update();
     tank.update();
+
     if(tank.x < grid.x) tank.x = grid.x;
     if(tank.y < grid.y) tank.y = grid.y;
-    if(tank.x + tank.w > grid.x + grid.w) tank.x = (grid.x + grid.w) - tank.w;
-    if(tank.y + tank.h > grid.y + grid.h) tank.y = (grid.y + grid.h) - tank.h;
+    if(tank.x + tank.w * 0.5 > grid.x + grid.w) tank.x = (grid.x + grid.w) - tank.w * 0.5;
+    if(tank.y + tank.h * 0.5 > grid.y + grid.h) tank.y = (grid.y + grid.h) - tank.h * 0.5;
 }
 
 class Game_grid extends Game_obj{
