@@ -120,12 +120,11 @@ class Vector {
 }
 
 class Timer {
-    constructor(requst_time, repeat) {
+    constructor(requst_time) {
         this.prev_t;
         this.delta_t;
         this.requst_t = requst_time;
-        this.alarm = false;
-        this.repeat = repeat;
+        this.alarm = false;        
         this.tmp_time = 0;
     }
 
