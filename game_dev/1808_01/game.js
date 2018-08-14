@@ -5,6 +5,7 @@ class Game {
         this.w = w;
         this.h = h;        
         
+        this.inputMag = null;
         this.player = null;
     }
 
@@ -22,6 +23,7 @@ class Game {
 
     update() {
         if(this.player) {
+            
             this.player.update();            
         }
     }

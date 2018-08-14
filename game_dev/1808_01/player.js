@@ -1,10 +1,11 @@
 class Player extends GameObj{
     constructor(x, y, w, h) {
         super(x, y, w, h);
+        this.forword = new Vector2d(0, -1);
     }
 
     update() {
-
+        
     }
 
     render(ctx) {

@@ -1,16 +1,16 @@
 class Input {
     constructor() {
-        this.keyCodes = [];   
-        
-        document.addEventListener('keydown',this.handleKeyDown, false);
-        document.addEventListener('keyup', this.handleKeyUp, false);
+        this.keyCodes = [];
+
+        document.addEventListener('keydown',() => this.handleKeyDown(this), false);
+        document.addEventListener('keyup', () => this.handleKeyUp(this), false);
     }
     
-    handleKeyDown(e) {        
+    handleKeyDown(e) {  
         this.keyCodes[e.keyCode] = true;
     }
 
     handleKeyUp(e) {
-        this.keyCodes[e.keyCode] = false;        
+        this.keyCodes[e.keyCode] = false;
     }
 }
