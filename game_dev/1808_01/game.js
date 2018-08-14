@@ -6,6 +6,8 @@ class Game {
         this.h = h;        
         
         this.inputMag = null;
+        this.grid = null;
+
         this.player = null;
     }
 
@@ -18,7 +20,11 @@ class Game {
         this.canvas.style.border = '1px solid gray';
         
         body.insertBefore(this.canvas, body[0]);
-        this.ctx = this.canvas.getContext('2d');        
+        this.ctx = this.canvas.getContext('2d');   
+        
+        this.grid = new Grid(this.canvas, 50, 14, 10);
+
+        this.player.inputMag = this.inputMag;
     }
 
     update() {
@@ -34,6 +40,8 @@ class Game {
             this.canvas.clientTop,
             this.canvas.clientWidth,
             this.canvas.clientHeight);
+
+        this.grid.render(this.ctx);
 
         if(this.player) {
             this.player.render(this.ctx);            
