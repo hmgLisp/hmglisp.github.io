@@ -5,9 +5,9 @@ let potal;
 function init() {
     //canvas.setAttribute('height', '100');
     set_background("rgb(0, 0, 0)");
-    grid = new Game_grid(50, 50, 500, 500, 10, 10);
+    grid = new Game_grid(50, 50, 500, 700, 14, 10);
     potal = new Potal(grid.x + grid.w / 2, grid.y + 30, 20, 100);
-    tank = new Tank(300, 300, 30, 30, "rgb(250, 150, 50)");    
+    tank = new Tank(300, 600, 30, 30, "rgb(250, 150, 50)");    
     potal.set_target(tank);
 }
 
