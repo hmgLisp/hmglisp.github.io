@@ -3,9 +3,9 @@ class Game {
         this.canvas;
         this.ctx;
         this.w = w;
-        this.h = h;
+        this.h = h;        
         
-        this.init();
+        this.player = null;
     }
 
     init() {
@@ -16,20 +16,31 @@ class Game {
         this.canvas.style.border = '1px solid gray';
         
         body.insertBefore(this.canvas, body[0]);
-        this.ctx = this.canvas.getContext('2d');
+        this.ctx = this.canvas.getContext('2d');        
+    }
+
+    update() {
+        if(this.player) {
+            this.player.update();            
+        }
+    }
+
+    render() {
+        this.ctx.clearRect(0, 0, this.w, this.h);
+        if(this.player) {
+            this.player.render(this.ctx);
+        }
     }
 
     loop() {
         this.update();
-        this.render();
-        requestAnimationFrame(this.loop);
-    }
+        this.render();  
+        //requestAnimationFrame(this.loop.bind(this));        
+        requestAnimationFrame(() => this.loop());        
+    } 
 
-    update() {
-
-    }
-
-    render() {
-        this.clearRect(0, 0, this.w, this.h);
+    run() {
+        this.init();
+        this.loop();
     }
 }
