@@ -4,12 +4,12 @@ class Player extends GameObj{
     }
 
     update() {
-        
+
     }
 
     render(ctx) {
         ctx.beginPath();
-        ctx.rect(this.x, this.y, this.w, this.h);
+        ctx.rect(this.x - this.w/2, this.y - this.h/2, this.w, this.h);
         ctx.fillStyle = 'red';
         ctx.fill();
         ctx.closePath();

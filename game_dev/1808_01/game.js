@@ -11,8 +11,9 @@ class Game {
     init() {
         let body = document.querySelector('body');
         this.canvas = document.createElement('canvas');
-        this.canvas.style.width = this.w + 'px';
-        this.canvas.style.height = this.h + 'px';      
+        this.canvas.id = 'myCanvas';
+        this.canvas.width = this.w;
+        this.canvas.height = this.h;
         this.canvas.style.border = '1px solid gray';
         
         body.insertBefore(this.canvas, body[0]);
@@ -26,9 +27,14 @@ class Game {
     }
 
     render() {
-        this.ctx.clearRect(0, 0, this.w, this.h);
+        this.ctx.clearRect(
+            this.canvas.clientLeft,
+            this.canvas.clientTop,
+            this.canvas.clientWidth,
+            this.canvas.clientHeight);
+
         if(this.player) {
-            this.player.render(this.ctx);
+            this.player.render(this.ctx);            
         }
     }
 
