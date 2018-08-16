@@ -7,7 +7,7 @@ function main() {
     
     const game = new Game(w, h, 'red');
     game.inputMag = new Input();
-    game.player = new Player(w/2, h/2, 30, 30);
+    game.player = new Player(w/2, 650, 30, 30);
 
     game.run();
 }
