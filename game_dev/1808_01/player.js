@@ -2,7 +2,7 @@ class Player extends GameObj{
     constructor(x, y, w, h) {
         super(x, y, w, h);
         this.inputMag = null;
-        this.forword = new Vector2d(0, -1);
+        this.forword = new Vector(0, -1);
     }
 
     update() {
