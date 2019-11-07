@@ -15,4 +15,9 @@ class Vector {
             vec1.z * vec2.x - vec1.x * vec2.z,
             vec1.x * vec2.y - vec1.y * vec2.x);
     }
+
+    static normalize(vec) {
+        let len = Math.sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
+        return new Vector(vec.x / len, vec.y / len, vec.z / len);
+    }
 }
